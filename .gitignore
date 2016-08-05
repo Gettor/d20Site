@@ -1,3 +1,6 @@
 
 # nodejs modules directory
 node_modules/
+
+# typings directory
+typings/
