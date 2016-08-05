@@ -8,13 +8,6 @@ This repository contains two server sides:
 
 Communication between both sides is done by JSON.
 
-## About
-This repository contains two server sides:
-* frontend - written using AngularJS 2 framework,
-* backend - written using NodeJS.
-
-Communication between both sides is done by JSON.
-
 ## Installation:
 
 `curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -`
