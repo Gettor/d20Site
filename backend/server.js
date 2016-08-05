@@ -1,6 +1,8 @@
 // add necessary modules
-var http = require('http');
 var qs = require('querystring');
+
+var express = require('express');
+var app = express();
 
 var fs = require("fs");
 var file = "dnd.sqlite";
@@ -49,31 +51,26 @@ var pageHTML =
     '</body>' +
 '</html>';
 
-// create server and process data
-var server = http.createServer(function (req, res)
-{
-    var requestData = '';
-
-    // check HTTP method and show the right content
-    if (req.method === "GET")
-    {
-        res.writeHead(200, {'Content-Type': 'text/html'});
-        res.end(pageHTML + randomThing); // serve our HTML code
-    }
-    else if (req.method === "POST")
-    {
-        req.setEncoding('utf-8');
-
-        req.on('data', function(data) {
-            requestData += data;
-        });
-
-        req.on('end', function() {
-            var postData = qs.parse(requestData);
-            res.writeHead(200, {'Content-Type': 'text/html'});
-            res.end('<h1>Your nick: '+ postData.nickname + '</h1>');
-        });
-    }
+app.get('/', function (req, res) {
+    res.writeHead(200, {'Content-Type': 'text/html'});
+    res.end(pageHTML + randomThing); // serve our HTML code
 });
 
-server.listen(1337, '0.0.0.0');
+app.post('/', function (req, res) {
+    var requestData = '';
+    req.setEncoding('utf-8');
+
+    req.on('data', function(data) {
+        requestData += data;
+    });
+
+    req.on('end', function() {
+        var postData = qs.parse(requestData);
+        res.writeHead(200, {'Content-Type': 'text/html'});
+        res.end('<h1>Your nick: '+ postData.nickname + '</h1>');
+    });
+});
+
+app.listen(1337, function () {
+  console.log('Backend listening on port 1337!');
+});
