@@ -1,0 +1,26 @@
+{
+  "name": "d20site-backend",
+  "version": "0.0.1",
+  "scripts": {
+    "test": ""
+  },
+  "description": "d20 helper site",
+  "main": "serv.js",
+  "dependencies": {
+    "express": "^4.14.0",
+    "sqlite3": "^3.1.4"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Gettor/d20Site.git"
+  },
+  "keywords": [
+    "d20"
+  ],
+  "author": "Gettor",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Gettor/d20Site/issues"
+  },
+  "homepage": "https://github.com/Gettor/d20Site#readme"
+}

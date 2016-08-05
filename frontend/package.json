@@ -1,5 +1,5 @@
 {
-  "name": "d20site",
+  "name": "d20site-frontend",
   "version": "0.0.1",
   "scripts": {
     "test": "",
@@ -29,9 +29,7 @@
     "rxjs": "5.0.0-beta.6",
     "zone.js": "^0.6.12",
     "angular2-in-memory-web-api": "0.0.14",
-    "bootstrap": "^3.3.6",
-    "express": "^4.14.0",
-    "sqlite3": "^3.1.4"
+    "bootstrap": "^3.3.6"
   },
   "devDependencies": {
     "concurrently": "^2.0.0",
