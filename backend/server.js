@@ -10,6 +10,7 @@ var exists = fs.existsSync(file);
 
 
 var randomThing = "";
+var items = [];
 
 if(!exists)
 {
@@ -24,8 +25,8 @@ else
     {
         db.each("select * from main.dnd_characterclass", function(err, row)
         {
-            console.log(row.id + ": " + row.name);
             randomThing += row.id + " - " + row.name + "<br>";
+            items.push({ name: row.name });
         });
     });
     db.close();
@@ -71,6 +72,12 @@ app.post('/', function (req, res) {
     });
 });
 
+app.get('/api', function (req, res) {
+    res.setHeader('Content-Type', 'application/json');
+    res.setHeader('Access-Control-Allow-Origin', '*');  // NOTE: this is hack to fit CORS
+    res.send(JSON.stringify(items));
+});
+
 app.listen(1337, function () {
-  console.log('Backend listening on port 1337!');
+    console.log('Backend listening on port 1337!');
 });
