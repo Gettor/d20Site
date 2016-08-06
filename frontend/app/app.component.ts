@@ -8,9 +8,9 @@ import { Item } from './app.item';
   template : `
     <h1>My First Angular 2 App</h1>
     <h2>Database fetch:</h2>
-    <tr ng-repeat="(key, value in items)">
-      <td>{{ key }} </td><td>{{ value }}</td>
-    </tr>
+    <p *ngFor='let key of items'>
+      {{ key.name }}
+    </p>
   `
 })
 
