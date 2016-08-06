@@ -3,3 +3,6 @@
 
 # generated map files
 *.js.map
+
+# typings directory
+typings/

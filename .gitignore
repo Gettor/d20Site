@@ -2,5 +2,5 @@
 # nodejs modules directory
 node_modules/
 
-# typings directory
-typings/
+# npm debug logs
+npm-debug.log
