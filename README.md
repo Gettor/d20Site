@@ -31,3 +31,5 @@ Enter frontend or backend directory and type:
 - replace HTTP communication with WebSockets
 - refactor backend server
 - add account support
+- build database model
+- add documentation for database model
