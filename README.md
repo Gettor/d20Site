@@ -25,3 +25,9 @@ In both backend and frontend directories:
 Enter frontend or backend directory and type:
 
 `npm start`
+
+## TODO
+
+- replace HTTP communication with WebSockets
+- refactor backend server
+- add account support
