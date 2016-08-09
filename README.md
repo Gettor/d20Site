@@ -32,3 +32,4 @@ Enter frontend or backend directory and type:
 - add account support
 - build database model
 - add documentation for database model
+- investigate why 'npm install' fails in frontend directory
