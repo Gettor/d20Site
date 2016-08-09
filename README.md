@@ -16,7 +16,7 @@ Communication between both sides is done by JSON.
 
 `sudo apt-get install npm`
 
-In both backend and frontend directories:
+In both backend and frontend directories (tested on npm 3.9.5):
 
 `npm install`
 
@@ -32,4 +32,3 @@ Enter frontend or backend directory and type:
 - add account support
 - build database model
 - add documentation for database model
-- investigate why 'npm install' fails in frontend directory
