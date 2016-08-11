@@ -32,11 +32,13 @@ This project uses Sphinx Doc for its documentation. Install with either:
 
 `pip install sphinx` or `sudo apt-get install python-sphinx`
 
-Next (within /doc directory, after you've done some changes in documentation sources) build with Makefile:
+Next (within /doc directory) build with Makefile:
 
 `make html`
 
-Now your generated documentation index should be in "/doc/build/html/index.html" (to be opened with web browser)
+Now your generated documentation index should be in "/doc/build/html/index.html" (to be opened with web browser). In case of fire, clean with:
+
+`make clean`
 
 ## TODO
 
