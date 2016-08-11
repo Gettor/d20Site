@@ -29,8 +29,7 @@ None
 SQL syntax
 ==========
 
-.. code-block:: sqlite3
-    :linenos:
+.. code-block::
 
     CREATE TABLE "dnd_characterclass" (
       "id" int(11) NOT NULL ,
