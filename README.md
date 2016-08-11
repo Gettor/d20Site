@@ -40,6 +40,8 @@ Now your generated documentation index should be in "/doc/build/html/index.html"
 
 `make clean`
 
+Useful link(syntax cheatsheet): http://thomas-cokelaer.info/tutorials/sphinx/rest_syntax.html
+
 ## TODO
 
 - refactor backend server
