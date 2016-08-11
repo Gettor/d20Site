@@ -4,3 +4,6 @@ node_modules/
 
 # npm debug logs
 npm-debug.log
+
+# doc build files
+doc/build/*
