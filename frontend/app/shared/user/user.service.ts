@@ -1,14 +1,16 @@
 import { Injectable, Inject } from '@angular/core';
 import { Headers, Http, Response } from '@angular/http';
 import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/do';
 import { Observable } from 'rxjs/Observable';
+import { User } from './user';
 
 @Injectable()
 export class UserService {
 
   private actionUrl : string;
   private headers : Headers;
-  private user : string;
+  private user : User;
 
   constructor(private _http : Http, @Inject('API_ENDPOINT') private apiEndpoint : string) {
     this.actionUrl = apiEndpoint + '/user';
@@ -19,15 +21,16 @@ export class UserService {
   }
 
   public getUser() : string {
-    return this.user;
+    return this.user.username;
   }
 
   public isLogged() : boolean {
-    return this.user != null;
+    return this.user.username != null;
   }
 
   public login(user : string, password : string) : Observable<boolean> {
     return this._http.get(this.actionUrl)
-      .map((response : Response) => <boolean>response.json());
+      .do((response : Response) => (this.user = <User>response.json()))
+      .map((response : Response) => (<User>response.json()).username != null);
   }
 }
