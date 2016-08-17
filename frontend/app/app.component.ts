@@ -6,6 +6,7 @@ import { Item } from './app.item';
   selector : 'my-app',
   providers : [ DataService ],
   template : `
+    <my-login></my-login>
     <h1>My First Angular 2 App</h1>
     <h2>Database fetch:</h2>
     <p *ngFor='let key of items'>
