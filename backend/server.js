@@ -79,6 +79,7 @@ app.get('/api', function (req, res) {
     res.send(JSON.stringify(items));
 });
 
+//app.use(express.static(conf.staticDir))
 app.listen(1337, function () {
     console.log('Backend listening on port 1337!');
 });
