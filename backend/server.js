@@ -53,6 +53,7 @@ var pageHTML =
 '</html>';
 
 app.get('/', function (req, res) {
+    // res.sendFile("index.html", {root: path.join("./frontend/pages/index/view/")});
     res.writeHead(200, {'Content-Type': 'text/html'});
     res.end(pageHTML + randomThing); // serve our HTML code
 });
