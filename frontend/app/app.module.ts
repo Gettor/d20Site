@@ -3,11 +3,19 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpModule } from '@angular/http';
 import { IndexModule } from './index/index.module';
 import { LoginModule } from './login/login.module';
+import { MonstersModule } from './monsters/monsters.module';
 import { AppComponent } from './app.component';
 import { routing, appRoutingProviders } from './app.routing';
 
 @NgModule({
-  imports : [ BrowserModule, HttpModule, IndexModule, LoginModule, routing ],
+  imports : [
+    BrowserModule,
+    HttpModule,
+    IndexModule,
+    LoginModule,
+    MonstersModule,
+    routing
+  ],
   declarations : [ AppComponent ],
   providers : [
     appRoutingProviders,
