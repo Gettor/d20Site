@@ -4,6 +4,7 @@ import { HttpModule } from '@angular/http';
 import { IndexModule } from './index/index.module';
 import { LoginModule } from './login/login.module';
 import { MonstersModule } from './monsters/monsters.module';
+import { SharedModule } from './shared/shared.module';
 import { AppComponent } from './app.component';
 import { routing, appRoutingProviders } from './app.routing';
 
@@ -14,6 +15,7 @@ import { routing, appRoutingProviders } from './app.routing';
     IndexModule,
     LoginModule,
     MonstersModule,
+    SharedModule.forRoot(),
     routing
   ],
   declarations : [ AppComponent ],
