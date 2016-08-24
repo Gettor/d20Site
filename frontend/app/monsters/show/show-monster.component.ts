@@ -1,6 +1,5 @@
 import { Component, Input } from '@angular/core';
 import { Monster } from '../monster';
-//import { EditModalComponent } from '../../shared/edit-modal.component'
 
 @Component({
    selector : 'show-monster',
@@ -19,7 +18,7 @@ import { Monster } from '../monster';
              [label]="'Speed'"
              [inputType]="'number'"
              [value]="monster.speed"
-            (newValue)="updateSpeed($event)">
+             (newValue)="monster.speed=$event">
            </edit-modal>
          </td>
        </tr>
@@ -30,7 +29,9 @@ import { Monster } from '../monster';
            <edit-modal
              [label]="'Initiative'"
              [inputType]="'number'"
-             [value]="monster.initiative"></edit-modal>
+             [value]="monster.initiative"
+             (newValue)="monster.initiative=$event">
+           </edit-modal>
          </td>
        </tr>
        </tbody></table></div>
