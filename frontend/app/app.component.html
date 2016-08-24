@@ -13,13 +13,18 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="">Logo</a>
+      <a class="navbar-brand" routerLink="/">Logo</a>
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
-        <li class="active"><a href="">Home</a></li>
-        <li><a href="login">Login</a></li>
-        <li><a href="monsters">Monsters</a></li>
+        <li><a routerLink="/login">Login</a></li>
+        <li class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Monsters<span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a routerLink="/monsters">Find</a></li>
+            <li><a routerLink="/monsters">Add</a></li>
+          </ul>
+        </li>
       </ul>
       <!--<ul class="nav navbar-nav navbar-right">-->
         <!--<li><a href="#"><span class="glyphicon glyphicon-user"></span> Your Account</a></li>-->
@@ -34,7 +39,7 @@
 <br><br>
 
 <footer class="container-fluid text-center">
-  <p>Online Store Copyright</p>
+  <p>d20 Site Copyright</p>
   <form class="form-inline">Get deals:
     <input type="email" class="form-control" size="50" placeholder="Email Address">
     <button type="button" class="btn btn-danger">Sign Up</button>
