@@ -26,6 +26,18 @@ Enter frontend or backend directory and type:
 
 `npm start`
 
+## Database
+
+This project uses Sequelize ( http://docs.sequelizejs.com/en/v3/ ) as its ORM.
+
+If you ever feel the need to change anything in database schema, refer to dbMaker.js script in backend/ directory and make changes as you find necessary.
+
+When done, create new database with command:
+
+`node dbMaker.js`
+
+***BE CAREFUL:*** above command will **replace** existing database file (old one will be backed up though).
+
 ## Documentation
 
 This project uses Sphinx Doc for its documentation. Install with either:
