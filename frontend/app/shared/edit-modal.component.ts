@@ -5,15 +5,15 @@ import { MODAL_DIRECTIVES, ModalComponent } from 'ng2-bs3-modal/ng2-bs3-modal';
   selector : 'edit-modal',
   directives : [ MODAL_DIRECTIVES ],
   template : `
+    <button type="button" class="btn btn-default" (click)="open()">Edit</button>
     <modal #mymodal>
         <modal-header [show-close]="true">
-            <h4 class="modal-title">{{ header }}</h4>
+            <h4 class="modal-title">Edit {{ label }}</h4>
         </modal-header>
         <modal-body>
           <div class="form-group">
-              <label for="textbox">{{ label }}</label>
               <input autofocus type="{{ inputType }}"
-                class="form-control" id="textbox" [(ngModel)]="value">
+                class="form-control" id="textbox" [(ngModel)]="formValue">
           </div>
         </modal-body>
         <modal-footer>
@@ -21,7 +21,6 @@ import { MODAL_DIRECTIVES, ModalComponent } from 'ng2-bs3-modal/ng2-bs3-modal';
           <button type="button" class="btn btn-primary" (click)="close()">Ok</button>
         </modal-footer>
     </modal>
-    <button type="button" class="btn btn-default" (click)="mymodal.open()">Edit</button>
   `
 })
 
@@ -30,22 +29,26 @@ export class EditModalComponent {
   modal : ModalComponent;
 
   @Input()
-  header  = 'Edit';
-
-  @Input()
   label = '';
 
   @Input()
   inputType = 'text';
 
   @Input()
-  value = '';
+  value : any;
 
   @Output()
   newValue = new EventEmitter();
 
+  formValue : any;
+
+  open() {
+    this.formValue = this.value;
+    this.modal.open()
+  }
+
   close() {
-    this.newValue.emit(this.value);
+    this.newValue.emit(this.formValue);
     this.modal.close();
   }
 }

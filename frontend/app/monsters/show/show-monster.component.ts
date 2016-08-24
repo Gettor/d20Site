@@ -16,7 +16,6 @@ import { Monster } from '../monster';
          <td style="text-align:center">{{ monster.speed }}</td>
          <td style="text-align:center">
            <edit-modal
-             [header]="'Edit speed'"
              [label]="'Speed'"
              [inputType]="'number'"
              [value]="monster.speed"
@@ -29,7 +28,6 @@ import { Monster } from '../monster';
          <td style="text-align:center">{{ monster.initiative }}</td>
          <td style="text-align:center">
            <edit-modal
-             [header]="'Edit initiative'"
              [label]="'Initiative'"
              [inputType]="'number'"
              [value]="monster.initiative"></edit-modal>
