@@ -1,5 +1,8 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { Subscription } from 'rxjs/Subscription';
 import { Monster } from '../monster';
+import { MonstersService } from '../monsters.service';
 
 @Component({
    selector : 'show-monster',
@@ -44,10 +47,22 @@ import { Monster } from '../monster';
    `
 })
 
-export class ShowMonsterComponent {
+export class ShowMonsterComponent implements OnInit {
   @Input() monster : Monster;
 
-  updateSpeed(e) {
-    this.monster.speed = e;
+  sub : Subscription;
+
+  constructor(private route : ActivatedRoute, private monstersService : MonstersService) {
+  }
+
+  ngOnInit() {
+    this.sub = this.route.params.subscribe(params => {
+      let id = +params['id'];
+      this.monster = this.monstersService.getMonster(id);
+    });
+  }
+
+  ngDestroy() {
+    this.sub.unsubscribe();
   }
 }

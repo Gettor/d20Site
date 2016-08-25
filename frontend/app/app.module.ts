@@ -14,9 +14,9 @@ import { routing, appRoutingProviders } from './app.routing';
     HttpModule,
     IndexModule,
     LoginModule,
+    routing,
     MonstersModule,
     SharedModule.forRoot(),
-    routing
   ],
   declarations : [ AppComponent ],
   providers : [
