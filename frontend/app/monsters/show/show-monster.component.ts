@@ -1,8 +1,11 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs/Subscription';
+import { Observable } from 'rxjs/Observable';
 import { Monster } from '../monster';
 import { MonstersService } from '../monsters.service';
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/concatAll';
 
 @Component({
    selector : 'show-monster',
@@ -48,7 +51,7 @@ import { MonstersService } from '../monsters.service';
 })
 
 export class ShowMonsterComponent implements OnInit {
-  @Input() monster : Monster;
+  @Input() monster : Monster = new Monster();
 
   sub : Subscription;
 
@@ -56,13 +59,19 @@ export class ShowMonsterComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.sub = this.route.params.subscribe(params => {
-      let id = +params['id'];
-      this.monster = this.monstersService.getMonster(id);
+    this.sub = this.route.params
+      .map((params : any) => (this.getMonster(+params['id'])))
+      .concatAll()
+      .subscribe(monster => {
+        this.monster = monster;
     });
   }
 
   ngDestroy() {
     this.sub.unsubscribe();
+  }
+
+  getMonster(id : number) : Observable<Monster> {
+    return this.monstersService.getMonster(id)
   }
 }

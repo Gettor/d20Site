@@ -79,6 +79,23 @@ app.get('/api', function (req, res) {
     res.send(JSON.stringify(items));
 });
 
+// TODO: replace with database query
+var monsters = [
+ { name : 'Creepy monster', speed : 9, initiative : 2},
+ { name : 'Really creepy monster', speed : 9, initiative : 2},
+ { name : 'Murloc', speed : 9, initiative : 2},
+ { name : 'Harry Potter', speed : 9, initiative : 2},
+ { name : 'Frog', speed : 9, initiative : 2},
+ { name : 'Magic sandal', speed : 9, initiative : 2},
+ { name : 'Giant monkey', speed : 9, initiative : 2},
+];
+
+app.get('/api/monsters/get/:id', function (req, res) {
+    res.setHeader('Content-Type', 'application/json');
+    res.setHeader('Access-Control-Allow-Origin', '*');  // NOTE: this is hack to fit CORS
+    res.send(JSON.stringify(monsters[req.params.id]));
+});
+
 //app.use(express.static(conf.staticDir))
 app.listen(1337, function () {
     console.log('Backend listening on port 1337!');

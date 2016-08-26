@@ -7,14 +7,14 @@ const monstersRoutes: Routes = [
   {
     path: 'monsters',
     component: MonstersComponent,
-  }
+  },
   {
     path: 'monsters/show/:id',
-    component: ShowMonsterComponent
+    component: ShowMonsterComponent,
   },
   {
     path : 'monsters/find',
-    component : FindMonstersComponent
+    component : FindMonstersComponent,
   },
 ];
 
