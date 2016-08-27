@@ -51,8 +51,9 @@ var sequelize = new Sequelize('d20Seq', '', '', {
 var UserTypes = sequelize.define('user_types', {
     name: Sequelize.STRING,
 });
-UserTypes.sync({force: true}).then(function () { });
-
+UserTypes.sync({force: true})
+.then(function () { return UserTypes.create({ name: 'Normal' }); })
+.then(function () { return UserTypes.create({ name: 'Admin' }); });
 
 var User = sequelize.define('users', {
     login: Sequelize.STRING,
@@ -446,6 +447,10 @@ var MonsterSkill = sequelize.define('monster_skills', {
     }
 });
 MonsterSkill.sync({force: true}).then(function () { });
+
+console.log("Creating constraints");
+
+console.log("Done creating constraints");
 
 // Below: for debug and reference reasons
 // sequelize.sync().then(function() {
