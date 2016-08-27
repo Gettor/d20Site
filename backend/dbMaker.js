@@ -438,6 +438,11 @@ var MonsterSkill = sequelize.define('monster_skills', {
             model: Skill,
             key: 'id'
         }
+    },
+    rank:
+    {
+        type: Sequelize.INTEGER,
+        defaultValue: 0
     }
 });
 MonsterSkill.sync({force: true}).then(function () { });
