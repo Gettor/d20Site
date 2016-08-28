@@ -33,32 +33,25 @@ else
     db.close();
 }
 
+// TODO: to be removed
 app.get('/api', function (req, res) {
     res.setHeader('Content-Type', 'application/json');
     res.setHeader('Access-Control-Allow-Origin', '*');  // NOTE: this is hack to fit CORS
     res.send(JSON.stringify(items));
 });
 
-// TODO: replace with database query
-var monsters = [
- { name : 'Creepy monster', speed : 9, initiative : 2},
- { name : 'Really creepy monster', speed : 9, initiative : 2},
- { name : 'Murloc', speed : 9, initiative : 2},
- { name : 'Harry Potter', speed : 9, initiative : 2},
- { name : 'Frog', speed : 9, initiative : 2},
- { name : 'Magic sandal', speed : 9, initiative : 2},
- { name : 'Giant monkey', speed : 9, initiative : 2},
-];
-
 app.get('/api/monsters/get/:id', function (req, res) {
     res.setHeader('Content-Type', 'application/json');
     res.setHeader('Access-Control-Allow-Origin', '*');  // NOTE: this is hack to fit CORS
-    res.send(JSON.stringify(monsters[req.params.id]));
+
+    models.Monster
+      .findById(req.params.id)
+      .then(function(monster) {
+          res.send(JSON.stringify(monster));
+        });
 });
 
 //app.use(express.static(conf.staticDir))
-
-
 models.sequelize.sync().then(function () {
     app.listen(1337, function () {
         console.log('Backend listening on port 1337!');
