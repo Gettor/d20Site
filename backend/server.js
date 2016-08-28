@@ -8,6 +8,7 @@ var fs = require("fs");
 var file = "dnd.sqlite";
 var exists = fs.existsSync(file);
 
+var models = require("./db/models");
 
 var randomThing = "";
 var items = [];
@@ -56,6 +57,10 @@ app.get('/api/monsters/get/:id', function (req, res) {
 });
 
 //app.use(express.static(conf.staticDir))
-app.listen(1337, function () {
-    console.log('Backend listening on port 1337!');
+
+
+models.sequelize.sync().then(function () {
+    app.listen(1337, function () {
+        console.log('Backend listening on port 1337!');
+    });
 });
