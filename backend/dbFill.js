@@ -24,4 +24,10 @@ models.sequelize.sync()
         name: 'Murlok',
         custom_description: 'Gruulululuuuuuluuu!',
         });
+    models.UserTypes.create({
+        name: 'Normal'
+    });
+    models.UserTypes.create({
+        name: 'Admin'
+    });
 });

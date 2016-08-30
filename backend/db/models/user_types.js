@@ -5,9 +5,5 @@ module.exports = function(sequelize, DataTypes) {
       name: DataTypes.STRING,
   });
 
-  UserTypes.sync({force: true})
-  .then(function () { return UserTypes.create({ name: 'Normal' }); })
-  .then(function () { return UserTypes.create({ name: 'Admin' }); });
-
   return UserTypes;
 };
