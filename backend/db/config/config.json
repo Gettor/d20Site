@@ -1,0 +1,10 @@
+{
+  "development": {
+    "username": null,
+    "password": null,
+    "database": "d20Seq",
+    "host": "localhost",
+    "dialect": "sqlite",
+    "storage": "d20Seq.db"
+  }
+}

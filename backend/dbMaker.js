@@ -37,7 +37,7 @@ fs.exists(fileName, function (exists)
             });
             console.log("DB already existed: moved and created clean one. Old db stored in: " + newFileName);
         }
-        }); 
+        });
     }
 });
 
@@ -96,23 +96,23 @@ var Monster = sequelize.define('monsters', {
     },
     name: Sequelize.STRING,
     custom_description: Sequelize.TEXT,
-    hd_type: 
+    hd_type:
     {
         type: Sequelize.INTEGER,
         defaultValue: 4
     },
-    hd_amount: 
+    hd_amount:
     {
         type: Sequelize.INTEGER,
         defaultValue: 1
     },
     hp: Sequelize.INTEGER,
-    initiative: 
+    initiative:
     {
         type: Sequelize.INTEGER,
         defaultValue: 0
     },
-    speed: 
+    speed:
     {
         type: Sequelize.INTEGER,
         defaultValue: 9
@@ -131,22 +131,22 @@ var Attribute = sequelize.define('attributes', {
             key: 'id'
         }
     },
-    str: 
+    str:
     {
         type: Sequelize.INTEGER,
         defaultValue: 3
     },
-    dex: 
+    dex:
     {
         type: Sequelize.INTEGER,
         defaultValue: 3
     },
-    con: 
+    con:
     {
         type: Sequelize.INTEGER,
         defaultValue: 3
     },
-    wis: 
+    wis:
     {
         type: Sequelize.INTEGER,
         defaultValue: 3
