@@ -448,10 +448,6 @@ var MonsterSkill = sequelize.define('monster_skills', {
 });
 MonsterSkill.sync({force: true}).then(function () { });
 
-console.log("Creating constraints");
-
-console.log("Done creating constraints");
-
 // Below: for debug and reference reasons
 // sequelize.sync().then(function() {
 //   return User.create({
