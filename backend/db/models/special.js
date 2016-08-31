@@ -13,7 +13,7 @@ module.exports = function(sequelize, DataTypes) {
   }, {
       classMethods: {
          associate: function(models) {
-            Special.hasMany(models.Monster)
+            Special.belongsToMany(models.Monster, {through: 'MonsterSpecialsInstances'})
          }
       }
   });

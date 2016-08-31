@@ -19,11 +19,13 @@ module.exports = function(sequelize, DataTypes) {
       {
           type: DataTypes.BOOLEAN,
           defaultValue: false
-      },
+      }
   }, {
       classMethods: {
          associate: function(models) {
-            Spell.hasOne(models.SpellRange)
+            Spell.hasOne(models.SpellRange),
+            Spell.hasMany(models.SpellEffect),
+            Spell.belongsTo(models.Monster, {through: 'MonsterSpellInstances'})
          }
       }
   });

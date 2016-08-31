@@ -27,7 +27,7 @@ module.exports = function(sequelize, DataTypes) {
   }, {
       classMethods: {
          associate: function(models) {
-            SpellEffect.hasMany(models.Spell)
+            SpellEffect.belongsTo(models.Spell, {through: 'SpellEffectInstances'})
          }
       }
   });
