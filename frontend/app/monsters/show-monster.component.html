@@ -1,0 +1,85 @@
+<center>
+<div class="panel panel-default">
+ <div class="panel-heading"><h2>{{ monster.name }}</h2></div>
+ <div class="panel-body">
+   <div class="table-responsive">
+   <table class="table table-striped"><tbody>
+   <tr>
+     <td style="text-align:center"><b>Description</b></td>
+     <td style="text-align:center">{{ monster.custom_description }}</td>
+     <td style="text-align:center">
+       <edit-modal
+         [label]="'Description'"
+         [inputType]="'text'"
+         [value]="monster.custom_description"
+         (newValue)="monster.custom_description=$event; onUpdateMonster()">
+       </edit-modal>
+     </td>
+   </tr>
+   <tr>
+     <td style="text-align:center"><b>Hit dice type</b></td>
+     <td style="text-align:center">{{ monster.hd_type }}</td>
+     <td style="text-align:center">
+       <edit-modal
+         [label]="'Hit dice type'"
+         [inputType]="'number'"
+         [value]="monster.hd_type"
+         (newValue)="monster.hd_type=$event; onUpdateMonster()">
+       </edit-modal>
+     </td>
+   </tr>
+   <tr>
+     <td style="text-align:center"><b>Hit dice amount</b></td>
+     <td style="text-align:center">{{ monster.hd_amount }}</td>
+     <td style="text-align:center">
+       <edit-modal
+         [label]="'Hit dice amount'"
+         [inputType]="'number'"
+         [value]="monster.hd_amount"
+         (newValue)="monster.hd_amount=$event; onUpdateMonster()">
+       </edit-modal>
+     </td>
+   </tr>
+   <tr>
+     <td style="text-align:center"><b>Hit points</b></td>
+     <td style="text-align:center">{{ monster.hp }}</td>
+     <td style="text-align:center">
+       <edit-modal
+         [label]="'Hit points'"
+         [inputType]="'number'"
+         [value]="monster.hp"
+         (newValue)="monster.hp=$event; onUpdateMonster()">
+       </edit-modal>
+     </td>
+   </tr>
+   <tr>
+     <td style="text-align:center"><b>Initiative</b></td>
+     <td style="text-align:center">{{ monster.initiative }}</td>
+     <td style="text-align:center">
+       <edit-modal
+         [label]="'Initiative'"
+         [inputType]="'number'"
+         [value]="monster.initiative"
+         (newValue)="monster.initiative=$event; onUpdateMonster()">
+       </edit-modal>
+     </td>
+   </tr>
+   <tr>
+     <td style="text-align:center"><b>Speed</b></td>
+     <td style="text-align:center">{{ monster.speed }}</td>
+     <td style="text-align:center">
+       <edit-modal
+         [label]="'Speed'"
+         [inputType]="'number'"
+         [value]="monster.speed"
+         (newValue)="monster.speed=$event; onUpdateMonster()">
+       </edit-modal>
+     </td>
+   </tr>
+   </tbody></table></div>
+ </div>
+ <div class="panel-footer">
+   <button class="btn btn-default">Delete</button>
+ </div>
+</div>
+</center>

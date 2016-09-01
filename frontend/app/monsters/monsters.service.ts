@@ -22,4 +22,9 @@ export class MonstersService {
     return this._http.get(this.actionUrl + '/get/' + id)
       .map((response : Response) => (<Monster>response.json()));
   }
+
+  public updateMonster(monster : Monster) : Observable<void> {
+    return this._http.post(this.actionUrl + '/update/', JSON.stringify(monster), { headers : this.headers })
+      .map((response : Response) => (null))
+  }
 }
