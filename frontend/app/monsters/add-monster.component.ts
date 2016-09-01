@@ -14,6 +14,7 @@ export class AddMonsterComponent {
   }
 
   onSubmit() {
-    console.log(this.monster);
+    this.monstersService.addMonster(this.monster)
+      .subscribe();
   }
 }

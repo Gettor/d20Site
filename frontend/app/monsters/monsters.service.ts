@@ -25,6 +25,11 @@ export class MonstersService {
 
   public updateMonster(monster : Monster) : Observable<void> {
     return this._http.post(this.actionUrl + '/update/', JSON.stringify(monster), { headers : this.headers })
-      .map((response : Response) => (null))
+      .map((response : Response) => (null));
+  }
+
+  public addMonster(monster : Monster) : Observable<void> {
+    return this._http.post(this.actionUrl + '/add/', JSON.stringify(monster), { headers : this.headers })
+      .map((response : Response) => (null));
   }
 }
