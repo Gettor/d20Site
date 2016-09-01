@@ -2,8 +2,8 @@ import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs/Subscription';
 import { Observable } from 'rxjs/Observable';
-import { Monster } from '../monster';
-import { MonstersService } from '../monsters.service';
+import { Monster } from './monster';
+import { MonstersService } from './monsters.service';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/concatAll';
 

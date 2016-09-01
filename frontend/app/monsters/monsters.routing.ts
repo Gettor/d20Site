@@ -1,6 +1,6 @@
 import { Routes, RouterModule } from '@angular/router';
 import { MonstersComponent } from './monsters.component';
-import { ShowMonsterComponent } from './show/show-monster.component';
+import { ShowMonsterComponent } from './show-monster.component';
 import { FindMonstersComponent } from './find-monsters.component';
 
 const monstersRoutes: Routes = [
