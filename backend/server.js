@@ -1,8 +1,14 @@
 // add necessary modules
 var qs = require('querystring');
-
+var bodyParser = require("body-parser");
+var cors = require('cors');
 var express = require('express');
 var app = express();
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended : true}));
+// TODO: remove after fix CORS issue
+app.use(cors());
 
 var fs = require("fs");
 var file = "dnd.sqlite";
@@ -35,15 +41,10 @@ else
 
 // TODO: to be removed
 app.get('/api', function (req, res) {
-    res.setHeader('Content-Type', 'application/json');
-    res.setHeader('Access-Control-Allow-Origin', '*');  // NOTE: this is hack to fit CORS
     res.send(JSON.stringify(items));
 });
 
 app.get('/api/monsters/get/:id', function (req, res) {
-    res.setHeader('Content-Type', 'application/json');
-    res.setHeader('Access-Control-Allow-Origin', '*');  // NOTE: this is hack to fit CORS
-
     models.Monster
       .findById(req.params.id)
       .then(function(monster) {
@@ -51,7 +52,18 @@ app.get('/api/monsters/get/:id', function (req, res) {
         });
 });
 
+app.post('/api/monsters/update', function (req, res) {
+    var monster = req.body;
+
+    models.Monster.findById(monster.id)
+        .then(function(old) {
+            old.update(monster);
+            res.end();
+        });
+});
+
 //app.use(express.static(conf.staticDir))
+
 models.sequelize.sync().then(function () {
     app.listen(1337, function () {
         console.log('Backend listening on port 1337!');

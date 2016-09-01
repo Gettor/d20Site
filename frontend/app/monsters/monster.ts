@@ -1,6 +1,11 @@
 
 export class Monster {
+  public id : number;
   public name : string;
-  public speed : number;
+  public custom_description : string;
+  public hd_type : number;
+  public hd_amount : number;
+  public hp : number;
   public initiative : number;
+  public speed : number;
 }

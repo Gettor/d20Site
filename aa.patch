@@ -1,0 +1,370 @@
+diff --git a/backend/package.json b/backend/package.json
+index 22f54e4..78c7565 100644
+--- a/backend/package.json
++++ b/backend/package.json
+@@ -7,6 +7,8 @@
+   "description": "d20 helper site",
+   "main": "serv.js",
+   "dependencies": {
++    "body-parser": "^1.15.2",
++    "cors": "^2.8.0",
+     "express": "^4.14.0",
+     "sequelize": "^3.24.1",
+     "sequelize-cli": "^2.4.0",
+diff --git a/backend/server.js b/backend/server.js
+index 0756f97..f7c2144 100644
+--- a/backend/server.js
++++ b/backend/server.js
+@@ -1,9 +1,15 @@
+ // add necessary modules
+ var qs = require('querystring');
+-
++var bodyParser = require("body-parser");
++var cors = require('cors');
+ var express = require('express');
+ var app = express();
+ 
++app.use(bodyParser.json());
++app.use(bodyParser.urlencoded({extended : true}));
++// TODO: remove after fix CORS issue
++app.use(cors());
++
+ var fs = require("fs");
+ var file = "dnd.sqlite";
+ var exists = fs.existsSync(file);
+@@ -35,15 +41,10 @@ else
+ 
+ // TODO: to be removed
+ app.get('/api', function (req, res) {
+-    res.setHeader('Content-Type', 'application/json');
+-    res.setHeader('Access-Control-Allow-Origin', '*');  // NOTE: this is hack to fit CORS
+     res.send(JSON.stringify(items));
+ });
+ 
+ app.get('/api/monsters/get/:id', function (req, res) {
+-    res.setHeader('Content-Type', 'application/json');
+-    res.setHeader('Access-Control-Allow-Origin', '*');  // NOTE: this is hack to fit CORS
+-
+     models.Monster
+       .findById(req.params.id)
+       .then(function(monster) {
+@@ -51,7 +52,18 @@ app.get('/api/monsters/get/:id', function (req, res) {
+         });
+ });
+ 
++app.post('/api/monsters/update', function (req, res) {
++    var monster = req.body;
++
++    models.Monster.findById(monster.id)
++        .then(function(old) {
++            old.update(monster);
++            res.end();
++        });
++});
++
+ //app.use(express.static(conf.staticDir))
++
+ models.sequelize.sync().then(function () {
+     app.listen(1337, function () {
+         console.log('Backend listening on port 1337!');
+diff --git a/frontend/app/monsters/monster.ts b/frontend/app/monsters/monster.ts
+index 9eea836..bdba4a0 100644
+--- a/frontend/app/monsters/monster.ts
++++ b/frontend/app/monsters/monster.ts
+@@ -1,6 +1,11 @@
+ 
+ export class Monster {
++  public id : number;
+   public name : string;
+-  public speed : number;
++  public custom_description : string;
++  public hd_type : number;
++  public hd_amount : number;
++  public hp : number;
+   public initiative : number;
++  public speed : number;
+ }
+diff --git a/frontend/app/monsters/monsters.component.ts b/frontend/app/monsters/monsters.component.ts
+index 87a093a..1fb090c 100644
+--- a/frontend/app/monsters/monsters.component.ts
++++ b/frontend/app/monsters/monsters.component.ts
+@@ -9,9 +9,4 @@ import { Monster } from './monster';
+ })
+ 
+ export class MonstersComponent {
+-  monster : Monster = {
+-    name : 'Creepy monster',
+-    speed : 9,
+-    initiative : 2,
+-  };
+ }
+diff --git a/frontend/app/monsters/monsters.module.ts b/frontend/app/monsters/monsters.module.ts
+index d7bb908..4ede4a8 100644
+--- a/frontend/app/monsters/monsters.module.ts
++++ b/frontend/app/monsters/monsters.module.ts
+@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
+ import { BrowserModule } from '@angular/platform-browser';
+ import { monstersRouting } from './monsters.routing';
+ import { MonstersComponent } from './monsters.component';
+-import { ShowMonsterComponent } from './show/show-monster.component';
++import { ShowMonsterComponent } from './show-monster.component';
+ import { FindMonstersComponent } from './find-monsters.component';
+ import { MonstersService } from './monsters.service';
+ import { SharedModule } from '../shared/shared.module'
+diff --git a/frontend/app/monsters/monsters.routing.ts b/frontend/app/monsters/monsters.routing.ts
+index 6169f98..f571ef9 100644
+--- a/frontend/app/monsters/monsters.routing.ts
++++ b/frontend/app/monsters/monsters.routing.ts
+@@ -1,6 +1,6 @@
+ import { Routes, RouterModule } from '@angular/router';
+ import { MonstersComponent } from './monsters.component';
+-import { ShowMonsterComponent } from './show/show-monster.component';
++import { ShowMonsterComponent } from './show-monster.component';
+ import { FindMonstersComponent } from './find-monsters.component';
+ 
+ const monstersRoutes: Routes = [
+diff --git a/frontend/app/monsters/monsters.service.ts b/frontend/app/monsters/monsters.service.ts
+index 327a038..dd57339 100644
+--- a/frontend/app/monsters/monsters.service.ts
++++ b/frontend/app/monsters/monsters.service.ts
+@@ -16,10 +16,16 @@ export class MonstersService {
+     this.headers = new Headers();
+     this.headers.append('Content-Type', 'application/json');
+     this.headers.append('Accept', 'application/json');
++    //this.headers.append('Access-Control-Allow-Origin', '*');  // NOTE: this is hack to fit CORS
+   }
+ 
+   public getMonster(id : number) : Observable<Monster> {
+     return this._http.get(this.actionUrl + '/get/' + id)
+       .map((response : Response) => (<Monster>response.json()));
+   }
++
++  public updateMonster(monster : Monster) : Observable<void> {
++    return this._http.post(this.actionUrl + '/update/', JSON.stringify(monster), { headers : this.headers })
++      .map((response : Response) => (null))
++  }
+ }
+diff --git a/frontend/app/monsters/show-monster.component.html b/frontend/app/monsters/show-monster.component.html
+new file mode 100644
+index 0000000..51dc637
+--- /dev/null
++++ b/frontend/app/monsters/show-monster.component.html
+@@ -0,0 +1,85 @@
++<center>
++<div class="panel panel-default">
++ <div class="panel-heading"><h2>{{ monster.name }}</h2></div>
++ <div class="panel-body">
++   <div class="table-responsive">
++   <table class="table table-striped"><tbody>
++   <tr>
++     <td style="text-align:center"><b>Description</b></td>
++     <td style="text-align:center">{{ monster.custom_description }}</td>
++     <td style="text-align:center">
++       <edit-modal
++         [label]="'Description'"
++         [inputType]="'text'"
++         [value]="monster.custom_description"
++         (newValue)="monster.custom_description=$event; onUpdateMonster()">
++       </edit-modal>
++     </td>
++   </tr>
++   <tr>
++     <td style="text-align:center"><b>Hit dice type</b></td>
++     <td style="text-align:center">{{ monster.hd_type }}</td>
++     <td style="text-align:center">
++       <edit-modal
++         [label]="'Hit dice type'"
++         [inputType]="'number'"
++         [value]="monster.hd_type"
++         (newValue)="monster.hd_type=$event; onUpdateMonster()">
++       </edit-modal>
++     </td>
++   </tr>
++   <tr>
++     <td style="text-align:center"><b>Hit dice amount</b></td>
++     <td style="text-align:center">{{ monster.hd_amount }}</td>
++     <td style="text-align:center">
++       <edit-modal
++         [label]="'Hit dice amount'"
++         [inputType]="'number'"
++         [value]="monster.hd_amount"
++         (newValue)="monster.hd_amount=$event; onUpdateMonster()">
++       </edit-modal>
++     </td>
++   </tr>
++   <tr>
++     <td style="text-align:center"><b>Hit points</b></td>
++     <td style="text-align:center">{{ monster.hp }}</td>
++     <td style="text-align:center">
++       <edit-modal
++         [label]="'Hit points'"
++         [inputType]="'number'"
++         [value]="monster.hp"
++         (newValue)="monster.hp=$event; onUpdateMonster()">
++       </edit-modal>
++     </td>
++   </tr>
++   <tr>
++     <td style="text-align:center"><b>Initiative</b></td>
++     <td style="text-align:center">{{ monster.initiative }}</td>
++     <td style="text-align:center">
++       <edit-modal
++         [label]="'Initiative'"
++         [inputType]="'number'"
++         [value]="monster.initiative"
++         (newValue)="monster.initiative=$event; onUpdateMonster()">
++       </edit-modal>
++     </td>
++   </tr>
++   <tr>
++     <td style="text-align:center"><b>Speed</b></td>
++     <td style="text-align:center">{{ monster.speed }}</td>
++     <td style="text-align:center">
++       <edit-modal
++         [label]="'Speed'"
++         [inputType]="'number'"
++         [value]="monster.speed"
++         (newValue)="monster.speed=$event; onUpdateMonster()">
++       </edit-modal>
++     </td>
++   </tr>
++   </tbody></table></div>
++ </div>
++ <div class="panel-footer">
++   <button class="btn btn-default">Delete</button>
++ </div>
++</div>
++</center>
+diff --git a/frontend/app/monsters/show-monster.component.ts b/frontend/app/monsters/show-monster.component.ts
+new file mode 100644
+index 0000000..87a321c
+--- /dev/null
++++ b/frontend/app/monsters/show-monster.component.ts
+@@ -0,0 +1,44 @@
++import { Component, Input, OnInit } from '@angular/core';
++import { ActivatedRoute } from '@angular/router';
++import { Subscription } from 'rxjs/Subscription';
++import { Observable } from 'rxjs/Observable';
++import { Monster } from './monster';
++import { MonstersService } from './monsters.service';
++import 'rxjs/add/operator/map';
++import 'rxjs/add/operator/concatAll';
++
++@Component({
++   selector : 'show-monster',
++   templateUrl : 'app/monsters/show-monster.component.html',
++})
++
++export class ShowMonsterComponent implements OnInit {
++  @Input() monster : Monster = new Monster();
++
++  sub : Subscription;
++
++  constructor(private route : ActivatedRoute, private monstersService : MonstersService) {
++  }
++
++  ngOnInit() {
++    this.sub = this.route.params
++      .map((params : any) => (this.getMonster(+params['id'])))
++      .concatAll()
++      .subscribe(monster => {
++        this.monster = monster;
++    });
++  }
++
++  ngDestroy() {
++    this.sub.unsubscribe();
++  }
++
++  getMonster(id : number) : Observable<Monster> {
++    return this.monstersService.getMonster(id)
++  }
++
++  onUpdateMonster() {
++    this.monstersService.updateMonster(this.monster)
++      .subscribe();
++  }
++}
+diff --git a/frontend/app/monsters/show/show-monster.component.ts b/frontend/app/monsters/show/show-monster.component.ts
+deleted file mode 100644
+index 190b2ce..0000000
+--- a/frontend/app/monsters/show/show-monster.component.ts
++++ /dev/null
+@@ -1,77 +0,0 @@
+-import { Component, Input, OnInit } from '@angular/core';
+-import { ActivatedRoute } from '@angular/router';
+-import { Subscription } from 'rxjs/Subscription';
+-import { Observable } from 'rxjs/Observable';
+-import { Monster } from '../monster';
+-import { MonstersService } from '../monsters.service';
+-import 'rxjs/add/operator/map';
+-import 'rxjs/add/operator/concatAll';
+-
+-@Component({
+-   selector : 'show-monster',
+-   template : `
+-    <center>
+-    <div class="panel panel-default">
+-     <div class="panel-heading"><h2>{{ monster.name }}</h2></div>
+-     <div class="panel-body">
+-       <div class="table-responsive">
+-       <table class="table table-striped"><tbody>
+-       <tr>
+-         <td style="text-align:center"><b>Speed</b></td>
+-         <td style="text-align:center">{{ monster.speed }}</td>
+-         <td style="text-align:center">
+-           <edit-modal
+-             [label]="'Speed'"
+-             [inputType]="'number'"
+-             [value]="monster.speed"
+-             (newValue)="monster.speed=$event">
+-           </edit-modal>
+-         </td>
+-       </tr>
+-       <tr>
+-         <td style="text-align:center"><b>Initiative</b></td>
+-         <td style="text-align:center">{{ monster.initiative }}</td>
+-         <td style="text-align:center">
+-           <edit-modal
+-             [label]="'Initiative'"
+-             [inputType]="'number'"
+-             [value]="monster.initiative"
+-             (newValue)="monster.initiative=$event">
+-           </edit-modal>
+-         </td>
+-       </tr>
+-       </tbody></table></div>
+-     </div>
+-     <div class="panel-footer">
+-       <button class="btn btn-default">Delete</button>
+-     </div>
+-    </div>
+-    </center>
+-   `
+-})
+-
+-export class ShowMonsterComponent implements OnInit {
+-  @Input() monster : Monster = new Monster();
+-
+-  sub : Subscription;
+-
+-  constructor(private route : ActivatedRoute, private monstersService : MonstersService) {
+-  }
+-
+-  ngOnInit() {
+-    this.sub = this.route.params
+-      .map((params : any) => (this.getMonster(+params['id'])))
+-      .concatAll()
+-      .subscribe(monster => {
+-        this.monster = monster;
+-    });
+-  }
+-
+-  ngDestroy() {
+-    this.sub.unsubscribe();
+-  }
+-
+-  getMonster(id : number) : Observable<Monster> {
+-    return this.monstersService.getMonster(id)
+-  }
+-}

@@ -9,9 +9,4 @@ import { Monster } from './monster';
 })
 
 export class MonstersComponent {
-  monster : Monster = {
-    name : 'Creepy monster',
-    speed : 9,
-    initiative : 2,
-  };
 }
