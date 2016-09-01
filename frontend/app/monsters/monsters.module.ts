@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { monstersRouting } from './monsters.routing';
 import { MonstersComponent } from './monsters.component';
 import { ShowMonsterComponent } from './show-monster.component';
+import { AddMonsterComponent } from './add-monster.component';
 import { FindMonstersComponent } from './find-monsters.component';
 import { MonstersService } from './monsters.service';
 import { SharedModule } from '../shared/shared.module'
@@ -16,14 +17,11 @@ import { SharedModule } from '../shared/shared.module'
   declarations : [
     MonstersComponent,
     ShowMonsterComponent,
+    AddMonsterComponent,
     FindMonstersComponent,
   ],
   providers : [
     MonstersService
-  ],
-  exports : [
-    MonstersComponent,
-    FindMonstersComponent,
   ]
 })
 
