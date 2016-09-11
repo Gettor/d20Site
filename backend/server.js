@@ -62,6 +62,15 @@ app.post('/api/monsters/update', function (req, res) {
         });
 });
 
+app.post('/api/monsters/add', function (req, res) {
+    var monster = req.body;
+
+    models.Monster.create(monster)
+        .then(function(newMonster) {
+            res.end();
+        });
+});
+
 //app.use(express.static(conf.staticDir))
 
 models.sequelize.sync().then(function () {
