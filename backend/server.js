@@ -67,6 +67,7 @@ app.post('/api/monsters/add', function (req, res) {
 
     models.Monster.create(monster)
         .then(function(newMonster) {
+            res.json({ 'id' : newMonster.id });
             res.end();
         });
 });

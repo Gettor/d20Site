@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { Monster } from './monster';
 import { MonstersService } from './monsters.service';
 
@@ -10,11 +11,13 @@ import { MonstersService } from './monsters.service';
 export class AddMonsterComponent {
   monster : Monster = new Monster();
 
-  constructor(private monstersService : MonstersService) {
+  constructor(private monstersService : MonstersService, private router : Router) {
   }
 
   onSubmit() {
     this.monstersService.addMonster(this.monster)
-      .subscribe();
+      .subscribe((newId : number) => {
+        this.router.navigateByUrl('/monsters/show/' + newId.toString());
+      });
   }
 }

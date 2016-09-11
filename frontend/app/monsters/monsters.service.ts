@@ -28,8 +28,8 @@ export class MonstersService {
       .map((response : Response) => (null));
   }
 
-  public addMonster(monster : Monster) : Observable<void> {
+  public addMonster(monster : Monster) : Observable<number> {
     return this._http.post(this.actionUrl + '/add/', JSON.stringify(monster), { headers : this.headers })
-      .map((response : Response) => (null));
+      .map((response : Response) => response.json().id);
   }
 }
