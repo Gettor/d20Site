@@ -56,13 +56,10 @@ Useful link(syntax cheatsheet): http://thomas-cokelaer.info/tutorials/sphinx/res
 
 ## TODO
 
-- build database model - use ORM http://docs.sequelizejs.com/en/v3/
 - create monster form:
   - create,
-  - modify,
   - delete,
-  - search,
-  - show
+  - search
 - refactor backend server - remove obsolete methods
 - create one server for frontend and backend
 - MG table draft
