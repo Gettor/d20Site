@@ -52,6 +52,14 @@ app.get('/api/monsters/get/:id', function (req, res) {
         });
 });
 
+app.get('/api/spells/get/:id', function (req, res) {
+    models.Spell
+      .findById(req.params.id)
+      .then(function(spell) {
+          res.send(JSON.stringify(spell));
+        });
+});
+
 app.post('/api/monsters/update', function (req, res) {
     var monster = req.body;
 
