@@ -57,8 +57,6 @@ Useful link(syntax cheatsheet): http://thomas-cokelaer.info/tutorials/sphinx/res
 ## TODO
 
 - create monster form:
-  - create,
-  - delete,
   - search
 - refactor backend server - remove obsolete methods
 - create one server for frontend and backend
