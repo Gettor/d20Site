@@ -72,6 +72,16 @@ app.post('/api/monsters/add', function (req, res) {
         });
 });
 
+app.post('/api/monsters/del', function (req, res) {
+    var monster = req.body;
+
+    models.Monster.findById(monster.id)
+        .then(function(old) {
+            old.destroy();
+            res.end();
+        });
+});
+
 //app.use(express.static(conf.staticDir))
 
 models.sequelize.sync().then(function () {
