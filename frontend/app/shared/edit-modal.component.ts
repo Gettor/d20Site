@@ -1,9 +1,8 @@
 import { Component, Input, Output, ViewChild, EventEmitter } from '@angular/core';
-import { MODAL_DIRECTIVES, ModalComponent } from 'ng2-bs3-modal/ng2-bs3-modal';
+import { ModalComponent } from 'ng2-bs3-modal/ng2-bs3-modal';
 
 @Component({
   selector : 'edit-modal',
-  directives : [ MODAL_DIRECTIVES ],
   template : `
     <button type="button" class="btn btn-default" (click)="open()">Edit</button>
     <modal #mymodal>
