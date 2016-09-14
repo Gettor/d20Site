@@ -32,4 +32,9 @@ export class MonstersService {
     return this._http.post(this.actionUrl + '/add/', JSON.stringify(monster), { headers : this.headers })
       .map((response : Response) => response.json().id);
   }
+
+  public deleteMonster(id : number) : Observable<void> {
+    return this._http.post(this.actionUrl + '/del/', JSON.stringify({ "id" : id}), { headers : this.headers })
+      .map((response : Response) => (null));
+  }
 }

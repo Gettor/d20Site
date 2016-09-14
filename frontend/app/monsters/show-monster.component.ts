@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs/Subscription';
 import { Observable } from 'rxjs/Observable';
 import { Monster } from './monster';
@@ -17,7 +17,7 @@ export class ShowMonsterComponent implements OnInit {
 
   sub : Subscription;
 
-  constructor(private route : ActivatedRoute, private monstersService : MonstersService) {
+  constructor(private route : ActivatedRoute, private router : Router, private monstersService : MonstersService) {
   }
 
   ngOnInit() {
@@ -40,5 +40,12 @@ export class ShowMonsterComponent implements OnInit {
   onUpdateMonster() {
     this.monstersService.updateMonster(this.monster)
       .subscribe();
+  }
+
+  onDeleteMonster() {
+    this.monstersService.deleteMonster(this.monster.id)
+      .subscribe(() => {
+        this.router.navigateByUrl('monsters/find');
+      });
   }
 }
