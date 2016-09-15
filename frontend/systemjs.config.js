@@ -9,13 +9,15 @@
     '@angular':                   'node_modules/@angular',
     'angular2-in-memory-web-api': 'node_modules/angular2-in-memory-web-api',
     'rxjs':                       'node_modules/rxjs',
-    'ng2-bs3-modal':              'node_modules/ng2-bs3-modal'
+    'ng2-bs3-modal':              'node_modules/ng2-bs3-modal',
+    'ng2-completer':              'node_modules/ng2-completer/bundles',
   };
   // packages tells the System loader how to load when no filename and/or no extension
   var packages = {
     'app':                        { main: 'main.js',  defaultExtension: 'js' },
     'rxjs':                       { defaultExtension: 'js' },
     'angular2-in-memory-web-api': { main: 'index.js', defaultExtension: 'js' },
+    'ng2-completer':              { main: 'ng2-completer.js', format: 'cjs' },
   };
   var ngPackageNames = [
     'common',
