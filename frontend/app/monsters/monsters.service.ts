@@ -3,6 +3,7 @@ import { Headers, Http, Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import { Monster } from './monster'
+import { CompleterService, CompleterData } from 'ng2-completer';
 
 @Injectable()
 export class MonstersService {
@@ -10,7 +11,7 @@ export class MonstersService {
   private actionUrl : string;
   private headers : Headers;
 
-  constructor(private _http : Http, @Inject('API_ENDPOINT') private apiEndpoint : string) {
+  constructor(private http : Http, @Inject('API_ENDPOINT') private apiEndpoint : string, private completerService : CompleterService) {
     this.actionUrl = apiEndpoint + '/monsters';
 
     this.headers = new Headers();
@@ -19,22 +20,26 @@ export class MonstersService {
   }
 
   public getMonster(id : number) : Observable<Monster> {
-    return this._http.get(this.actionUrl + '/get/' + id)
+    return this.http.get(this.actionUrl + '/get/' + id)
       .map((response : Response) => (<Monster>response.json()));
   }
 
   public updateMonster(monster : Monster) : Observable<void> {
-    return this._http.post(this.actionUrl + '/update/', JSON.stringify(monster), { headers : this.headers })
+    return this.http.post(this.actionUrl + '/update/', JSON.stringify(monster), { headers : this.headers })
       .map((response : Response) => (null));
   }
 
   public addMonster(monster : Monster) : Observable<number> {
-    return this._http.post(this.actionUrl + '/add/', JSON.stringify(monster), { headers : this.headers })
+    return this.http.post(this.actionUrl + '/add/', JSON.stringify(monster), { headers : this.headers })
       .map((response : Response) => response.json().id);
   }
 
   public deleteMonster(id : number) : Observable<void> {
-    return this._http.post(this.actionUrl + '/del/', JSON.stringify({ "id" : id}), { headers : this.headers })
+    return this.http.post(this.actionUrl + '/del/', JSON.stringify({ "id" : id}), { headers : this.headers })
       .map((response : Response) => (null));
+  }
+
+  public getFindService() : CompleterData {
+    return this.completerService.remote(this.actionUrl + '/find?searchstr=', 'name', 'monsters');
   }
 }

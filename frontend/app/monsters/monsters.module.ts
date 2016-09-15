@@ -7,11 +7,13 @@ import { AddMonsterComponent } from './add-monster.component';
 import { FindMonstersComponent } from './find-monsters.component';
 import { MonstersService } from './monsters.service';
 import { SharedModule } from '../shared/shared.module'
+import { Ng2CompleterModule } from "ng2-completer";
 
 @NgModule({
   imports : [
     BrowserModule,
     SharedModule,
+    Ng2CompleterModule,
     monstersRouting,
   ],
   declarations : [
