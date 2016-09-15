@@ -40,6 +40,6 @@ export class MonstersService {
   }
 
   public getFindService() : CompleterData {
-    return this.completerService.remote(this.actionUrl + '/find?searchstr=', 'name', 'monsters');
+    return this.completerService.remote(this.actionUrl + '/find?searchstr=', 'name', 'name');
   }
 }
