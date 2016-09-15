@@ -90,6 +90,22 @@ app.post('/api/monsters/del', function (req, res) {
         });
 });
 
+app.get('/api/monsters/find', function (req, res) {
+    var toFind = req.query.searchstr;
+
+    models.Monster.findAll({
+        where : {
+            name : {
+                $like : '%' + toFind + '%'
+            }
+        }
+    })
+        .then(function(found) {
+            res.json(found);
+            res.end();
+        });
+});
+
 //app.use(express.static(conf.staticDir))
 
 models.sequelize.sync().then(function () {
