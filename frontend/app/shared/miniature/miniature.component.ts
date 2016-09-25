@@ -4,9 +4,12 @@ import { Miniature } from './miniature';
 @Component({
    selector : 'miniature-show',
    template : `
-    <h3>{{ miniature.header }}</h3>
-    {{ miniature.imageUrl }}
-    {{ miniature.data }}
+      <div class="panel panel-default">
+         <div class="panel-heading">{{ miniature.header }}</div>
+         <div class="panel-body">
+            {{ miniature.data }}
+         </div>
+      </div>
    `
 })
 

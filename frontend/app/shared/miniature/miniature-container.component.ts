@@ -4,9 +4,14 @@ import { Miniature } from './miniature';
 @Component({
    selector : 'miniature-container',
    template : `
-      <miniature-show *ngFor="let miniature of miniatures"
-         [miniature]="miniature">
-      </miniature-show>
+      <div class="container">
+          <div class="row">
+              <div class="col-md-3" *ngFor="let miniature of miniatures">
+                  <miniature-show [miniature]="miniature">
+                  </miniature-show>
+              </div>
+          </div>
+      </div>
    `
 })
 
