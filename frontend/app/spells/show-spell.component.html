@@ -15,6 +15,18 @@
        </edit-modal>
      </td>
    </tr>
+   <tr>
+     <td style="text-align:center"><b>Save type:</b></td>
+     <td style="text-align:center">{{ spell.save_type }}</td>
+     <td style="text-align:center">
+       <edit-modal
+         [label]="'Save Type'"
+         [inputType]="'text'"
+         [value]="spell.save_type"
+         (newValue)="spell.save_type=$event; onUpdateSpell()">
+       </edit-modal>
+     </td>
+   </tr>
   </tbody></table></div>
  </div>
 </div>

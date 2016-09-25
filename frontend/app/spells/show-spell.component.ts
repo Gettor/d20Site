@@ -7,6 +7,13 @@ import { SpellsService } from './spells.service';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/concatAll';
 
+var saveTypes = {
+   0: [ "No save" ],
+   1: [ "Fortitude" ],
+   2: [ "Reflex" ],
+   3: [ "Will"]
+};
+
 @Component({
    selector : 'show-spell',
    templateUrl : 'app/spells/show-spell.component.html',
@@ -26,6 +33,7 @@ export class ShowSpellComponent implements OnInit {
       .concatAll()
       .subscribe(spell => {
         this.spell = spell;
+        this.spell.save_type = saveTypes[spell.save_type];
     });
   }
 
@@ -34,7 +42,7 @@ export class ShowSpellComponent implements OnInit {
   }
 
   getSpell(id : number) : Observable<Spell> {
-    return this.spellsService.getSpell(id)
+    return this.spellsService.getSpell(id);
   }
 
   onUpdateSpell() {
