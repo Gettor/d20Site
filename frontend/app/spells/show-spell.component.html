@@ -4,28 +4,16 @@
   <div class="table-responsive">
    <table class="table table-striped"><tbody>
     <tr>
-     <td style="text-align:center"><b>Description</b></td>
-     <td style="text-align:center">{{ spell.description }}</td>
-     <td style="text-align:center">
-       <edit-modal
-         [label]="'Description'"
-         [inputType]="'text'"
-         [value]="spell.description"
-         (newValue)="spell.description=$event; onUpdateSpell()">
-       </edit-modal>
-     </td>
+     <td style="text-align:right"><b>Description</b></td>
+     <td style="text-align:left">{{ spell.description }}</td>
    </tr>
    <tr>
-     <td style="text-align:center"><b>Save type:</b></td>
-     <td style="text-align:center">{{ spell.save_type }}</td>
-     <td style="text-align:center">
-       <edit-modal
-         [label]="'Save Type'"
-         [inputType]="'text'"
-         [value]="spell.save_type"
-         (newValue)="spell.save_type=$event; onUpdateSpell()">
-       </edit-modal>
-     </td>
+     <td style="text-align:right"><b>Save type:</b></td>
+     <td style="text-align:left">{{ spell.save_type }}</td>
+   </tr>
+   <tr>
+     <td style="text-align:right"><b>Permits spell resistance:</b></td>
+     <td style="text-align:left">{{ spell.permits_sr ? "Yes" : "No"}}</td>
    </tr>
   </tbody></table></div>
  </div>

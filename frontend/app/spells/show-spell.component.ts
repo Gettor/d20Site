@@ -46,8 +46,8 @@ export class ShowSpellComponent implements OnInit {
   }
 
   onUpdateSpell() {
-    this.spellsService.updateSpell(this.spell)
-      .subscribe();
+    // this.spellsService.updateSpell(this.spell)
+    //   .subscribe();
   }
 
   onDeleteSpell() {
