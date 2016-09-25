@@ -1,0 +1,24 @@
+<div class="panel panel-default" align="center">
+ <div class="panel-heading"><h2>{{ spell.name }}</h2></div>
+ <div class="panel-body">
+  <div class="table-responsive">
+   <table class="table table-striped"><tbody>
+    <tr>
+     <td style="text-align:right"><b>Belongs to:</b></td>
+     <td style="text-align:left"><a href={{monsterUrl}}>{{ monster.name ? monster.name : "Nameless monster" }}</a></td>
+   </tr>
+    <tr>
+     <td style="text-align:right"><b>Description</b></td>
+     <td style="text-align:left">{{ spell.description }}</td>
+   </tr>
+   <tr>
+     <td style="text-align:right"><b>Save type:</b></td>
+     <td style="text-align:left">{{ spell.save_type }}</td>
+   </tr>
+   <tr>
+     <td style="text-align:right"><b>Permits spell resistance:</b></td>
+     <td style="text-align:left">{{ spell.permits_sr ? "Yes" : "No"}}</td>
+   </tr>
+  </tbody></table></div>
+ </div>
+</div>
