@@ -3,6 +3,8 @@ import { Headers, Http, Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import { Spell } from './spell'
+import { Monster } from '../monsters/monster';
+
 
 @Injectable()
 export class SpellsService {
@@ -21,6 +23,11 @@ export class SpellsService {
   public getSpell(id : number) : Observable<Spell> {
     return this._http.get(this.actionUrl + '/get/' + id)
       .map((response : Response) => (<Spell>response.json()));
+  }
+
+  public getMonster(id : number) : Observable<Monster> {
+    return this._http.get(this.actionUrl + '/getMonster/' + id)
+      .map((response : Response) => (<Monster>response.json()));
   }
 
   public updateSpell(spell : Spell) : Observable<void> {

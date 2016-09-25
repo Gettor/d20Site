@@ -3,7 +3,9 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs/Subscription';
 import { Observable } from 'rxjs/Observable';
 import { Spell } from './spell';
+import { Monster } from '../monsters/monster';
 import { SpellsService } from './spells.service';
+import { MonstersService } from '../monsters/monsters.service';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/concatAll';
 
@@ -21,6 +23,8 @@ var saveTypes = {
 
 export class ShowSpellComponent implements OnInit {
   @Input() spell : Spell = new Spell();
+  monster : Monster = new Monster();
+  monsterUrl : string = "monsters/show/";
 
   sub : Subscription;
 
@@ -34,6 +38,16 @@ export class ShowSpellComponent implements OnInit {
       .subscribe(spell => {
         this.spell = spell;
         this.spell.save_type = saveTypes[spell.save_type];
+        console.log(spell);
+    });
+    this.sub = this.route.params
+      .map((params : any) => (this.getMonster(+params['id'])))
+      .concatAll()
+      .subscribe(monster => {
+        this.monster = monster;
+        this.monsterUrl = this.monsterUrl + String(monster.id);
+        console.log(monster);
+        console.log(this.monsterUrl);
     });
   }
 
@@ -43,6 +57,10 @@ export class ShowSpellComponent implements OnInit {
 
   getSpell(id : number) : Observable<Spell> {
     return this.spellsService.getSpell(id);
+  }
+
+  getMonster(id : number) : Observable<Monster> {
+    return this.spellsService.getMonster(id);
   }
 
   onUpdateSpell() {

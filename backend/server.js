@@ -60,6 +60,18 @@ app.get('/api/spells/get/:id', function (req, res) {
         });
 });
 
+app.get('/api/spells/getMonster/:id', function (req, res) {
+    models.Spell
+      .findById(req.params.id)
+      .then(function(spell) {
+        models.Monster
+        .findById(spell.MonsterId)
+        .then(function(monster) {
+            res.send(JSON.stringify(monster))
+        });
+       });
+});
+
 app.post('/api/monsters/update', function (req, res) {
     var monster = req.body;
 
