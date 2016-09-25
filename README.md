@@ -56,6 +56,16 @@ Useful link(syntax cheatsheet): http://thomas-cokelaer.info/tutorials/sphinx/res
 
 ## TODO
 
+- in spells module:
+  - in update component:
+    - make more civilised confirmation that update was successful (green update box maybe?)
+    - make more civilised way of "discarding changes" (`reload page` is crude, but... hey, it works, i geues)
+    - make input fields change their background color to yellow when change is detected
+    - add more fields for update
+    - add delete option
+  - in show component:
+    - add more fields
+  - add find component
 - create monster form:
   - search
 - refactor backend server - remove obsolete methods

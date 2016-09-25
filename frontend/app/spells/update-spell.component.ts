@@ -64,8 +64,9 @@ export class UpdateSpellComponent implements OnInit {
   }
 
   onUpdateSpell() {
-    // this.spellsService.updateSpell(this.spell)
-    //   .subscribe();
+    this.spellsService.updateSpell(this.spell)
+      .subscribe();
+    alert("Update complete");
   }
 
   onDeleteSpell() {
