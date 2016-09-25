@@ -70,6 +70,16 @@ app.post('/api/monsters/update', function (req, res) {
         });
 });
 
+app.post('/api/spells/update', function (req, res) {
+    var spell = req.body;
+
+    models.Spell.findById(spell.id)
+        .then(function(old) {
+            old.update(spell);
+            res.end();
+        });
+});
+
 app.post('/api/monsters/add', function (req, res) {
     var monster = req.body;
 
