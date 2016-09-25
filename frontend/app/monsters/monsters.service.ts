@@ -3,13 +3,15 @@ import { Headers, Http, Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import { Monster } from './monster'
-import { CompleterService, CompleterData } from 'ng2-completer';
+import { Miniature } from './../shared/miniature/miniature';
+import { CompleterService, CompleterData, CompleterItem } from 'ng2-completer';
 
 @Injectable()
 export class MonstersService {
 
   private actionUrl : string;
   private headers : Headers;
+  private completerData : CompleterData;
 
   constructor(private http : Http, @Inject('API_ENDPOINT') private apiEndpoint : string, private completerService : CompleterService) {
     this.actionUrl = apiEndpoint + '/monsters';
@@ -17,6 +19,8 @@ export class MonstersService {
     this.headers = new Headers();
     this.headers.append('Content-Type', 'application/json');
     this.headers.append('Accept', 'application/json');
+
+    this.completerData = this.completerService.remote(this.actionUrl + '/find?searchstr=', 'name', 'name');
   }
 
   public getMonster(id : number) : Observable<Monster> {
@@ -40,6 +44,18 @@ export class MonstersService {
   }
 
   public getFindService() : CompleterData {
-    return this.completerService.remote(this.actionUrl + '/find?searchstr=', 'name', 'name');
+    return this.completerData;
+  }
+
+  public findResults() : Observable<Miniature[]> {
+    return this.completerData
+      .map((data : CompleterItem[]) => {
+        let result : Miniature[] = [];
+        for (let singleData of data) {
+          result.push(
+            new Miniature(singleData.originalObject.name, 'bbb', 'none'));
+        }
+        return result;
+      });
   }
 }

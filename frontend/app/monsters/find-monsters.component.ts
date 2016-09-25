@@ -17,14 +17,16 @@ import { Miniature } from './../shared/miniature/miniature';
 export class FindMonstersComponent {
    private searchStr: string;
    private findService : CompleterData;
-   private monsterMiniatures : Miniature[] = [];
+   private monsterMiniatures : Miniature[];
 
    constructor(private monstersService: MonstersService) {
       this.findService = monstersService.getFindService();
+      monstersService.findResults().subscribe((miniatures : Miniature[]) => {
+         this.monsterMiniatures = miniatures;
+      });
    }
 
    onSubmit() {
-      this.monsterMiniatures.push(new Miniature('aaa', 'empty', 'dasdasd'));
       return;
    }
 }
