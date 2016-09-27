@@ -66,10 +66,9 @@ Useful link(syntax cheatsheet): http://thomas-cokelaer.info/tutorials/sphinx/res
   - in show component:
     - add more fields
   - add find component
-- create monster form:
-  - search
 - refactor backend server - remove obsolete methods
 - create one server for frontend and backend
+- unify monsters and spells modules to use same convention
 - MG table draft
 - add account support
 - add documentation for database model
