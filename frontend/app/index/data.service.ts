@@ -1,8 +1,5 @@
 import { Injectable, Inject } from '@angular/core';
 import { Headers, Http, Response } from '@angular/http';
-import 'rxjs/add/operator/map';
-import { Observable } from 'rxjs/Observable';
-import { Item } from './item';
 
 @Injectable()
 export class DataService {
@@ -16,10 +13,5 @@ export class DataService {
     this.headers = new Headers();
     this.headers.append('Content-Type', 'application/json');
     this.headers.append('Accept', 'application/json');
-  }
-
-  public Get = (): Observable<Item[]> => {
-    return this._http.get(this.actionUrl)
-      .map((response : Response) => <Item[]>response.json());
   }
 }

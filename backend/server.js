@@ -1,4 +1,5 @@
 // add necessary modules
+var fs = require("fs");
 var qs = require('querystring');
 var bodyParser = require("body-parser");
 var cors = require('cors');
@@ -10,39 +11,7 @@ app.use(bodyParser.urlencoded({extended : true}));
 // TODO: remove after fix CORS issue
 app.use(cors());
 
-var fs = require("fs");
-var file = "dnd.sqlite";
-var exists = fs.existsSync(file);
-
 var models = require("./db/models");
-
-var randomThing = "";
-var items = [];
-
-if(!exists)
-{
-    console.log("DB file doesn't exist!");
-}
-else
-{
-    console.log("DB file exists!");
-    var sqlite3 = require("sqlite3").verbose();
-    var db = new sqlite3.Database(file);
-    db.serialize(function()
-    {
-        db.each("select * from main.dnd_characterclass", function(err, row)
-        {
-            randomThing += row.id + " - " + row.name + "<br>";
-            items.push({ name: row.name });
-        });
-    });
-    db.close();
-}
-
-// TODO: to be removed
-app.get('/api', function (req, res) {
-    res.send(JSON.stringify(items));
-});
 
 app.get('/api/monsters/get/:id', function (req, res) {
     models.Monster
