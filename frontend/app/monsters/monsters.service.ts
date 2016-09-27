@@ -53,7 +53,11 @@ export class MonstersService {
         let result : Miniature[] = [];
         for (let singleData of data) {
           result.push(
-            new Miniature(singleData.originalObject.name, 'bbb', 'none'));
+            new Miniature(
+              singleData.originalObject.name,
+              '/monsters/show/' + singleData.originalObject.id,
+              'bbb',
+              'none'));
         }
         return result;
       });
