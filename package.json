@@ -1,6 +1,8 @@
 {
   "name": "d20site",
   "version": "1.0.0",
+  "description": "d20 helper site",
+  "license": "ISC",
   "scripts": {
     "start": "tsc && concurrently \"npm run tsc:w\" \"npm run lite\" ",
     "lite": "lite-server",
@@ -9,7 +11,6 @@
     "tsc:w": "tsc -w",
     "typings": "typings"
   },
-  "license": "ISC",
   "dependencies": {
     "@angular/common": "2.0.0-rc.6",
     "@angular/compiler": "2.0.0-rc.6",
@@ -29,12 +30,30 @@
     "rxjs": "5.0.0-beta.11",
     "sequelize": "^3.24.1",
     "systemjs": "0.19.38",
-    "zone.js": "^0.6.17"
+    "zone.js": "^0.6.17",
+
+    "body-parser": "^1.15.2",
+    "cors": "^2.8.0",
+    "express": "^4.14.0",
+    "sequelize": "^3.24.1",
+    "sequelize-cli": "^2.4.0",
+    "sqlite3": "^3.1.4"
   },
   "devDependencies": {
     "concurrently": "^2.0.0",
     "lite-server": "^2.2.0",
     "typescript": "^1.8.10",
     "typings": "^1.0.4"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Gettor/d20Site.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Gettor/d20Site/issues"
+  },
+  "homepage": "https://github.com/Gettor/d20Site#readme",
+  "keywords": [
+    "d20"
+  ]
 }
