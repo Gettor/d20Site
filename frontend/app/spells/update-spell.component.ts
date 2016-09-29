@@ -70,6 +70,10 @@ export class UpdateSpellComponent implements OnInit {
     });
   }
 
+  redirectToShowSpell() {
+    this.router.navigate(['spells/show/', this.spell.id, {updated: "canceled"} ])
+  }
+
   onDeleteSpell() {
     this.spellsService.deleteSpell(this.spell.id)
       .subscribe(() => {

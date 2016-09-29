@@ -25,6 +25,7 @@ export class ShowSpellComponent implements OnInit {
   @Input() spell : Spell = new Spell();
   monster : Monster = new Monster();
   monsterUrl : string = "monsters/show/";
+  updateState : string;
 
   sub : Subscription;
 
@@ -38,7 +39,6 @@ export class ShowSpellComponent implements OnInit {
       .subscribe(spell => {
         this.spell = spell;
         this.spell.save_type = saveTypes[spell.save_type];
-        console.log(spell);
     });
     this.sub = this.route.params
       .map((params : any) => (this.getMonster(+params['id'])))
@@ -46,9 +46,8 @@ export class ShowSpellComponent implements OnInit {
       .subscribe(monster => {
         this.monster = monster;
         this.monsterUrl = this.monsterUrl + String(monster.id);
-        console.log(monster);
-        console.log(this.monsterUrl);
     });
+    this.updateState = this.route.snapshot.params['updated']
   }
 
   ngDestroy() {

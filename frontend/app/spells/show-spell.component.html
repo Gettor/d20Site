@@ -1,5 +1,14 @@
 <div class="panel panel-default" align="center">
- <div class="panel-heading"><h2>{{ spell.name }}</h2></div>
+ <div class="panel-heading">
+  <h2>{{ spell.name }}</h2>
+  <div *ngIf="updateState === 'yes'" class="alert alert-success">
+    <strong>Spell updated successfully.</strong>
+  </div>
+  <div *ngIf="updateState === 'canceled'" class="alert alert-warning">
+    <strong>Changes discarded.</strong>
+  </div>
+ </div>
+
  <div class="panel-body">
   <div class="table-responsive">
    <table class="table table-striped"><tbody>
