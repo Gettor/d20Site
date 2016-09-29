@@ -63,9 +63,8 @@ export class ShowSpellComponent implements OnInit {
     return this.spellsService.getMonster(id);
   }
 
-  onUpdateSpell() {
-    // this.spellsService.updateSpell(this.spell)
-    //   .subscribe();
+  redirectToUpdateSpell() {
+    this.router.navigateByUrl('spells/update/'+String(this.spell.id))
   }
 
   onDeleteSpell() {
