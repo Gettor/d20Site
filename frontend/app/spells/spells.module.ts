@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
+import { BrowserModule, Title } from '@angular/platform-browser';
 import { spellsRouting } from './spells.routing';
 import { SpellsComponent } from './spells.component';
 import { ShowSpellComponent } from './show-spell.component';
@@ -23,6 +23,7 @@ import { SharedModule } from '../shared/shared.module'
     // FindSpellsComponent,
   ],
   providers : [
+    Title,
     SpellsService
   ]
 })

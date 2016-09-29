@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { UserService } from '../shared/user/user.service';
 import { UserData } from './userdata';
 
@@ -32,9 +33,10 @@ export class LoginComponent implements OnInit {
   private user = new UserData();
   private isLoggedIn = false;
 
-  constructor(private _userService : UserService) {}
+  constructor(private _userService : UserService, private titleService: Title) {}
 
   ngOnInit() {
+    this.titleService.setTitle( "d20Site - Login" );
     // TODO: enable when add backend support
     //this.isLoggedIn = this._userService.isLogged();
   }

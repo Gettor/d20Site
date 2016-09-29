@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { Monster } from './monster';
 import { MonstersService } from './monsters.service';
@@ -11,9 +12,12 @@ import { MonstersService } from './monsters.service';
 export class AddMonsterComponent {
   monster : Monster = new Monster();
 
-  constructor(private monstersService : MonstersService, private router : Router) {
+  constructor(private monstersService : MonstersService, private titleService : Title, private router : Router) {
   }
 
+  ngOnInit() {
+    this.titleService.setTitle( "d20Site - Add Monster" );
+  }
   onSubmit() {
     this.monstersService.addMonster(this.monster)
       .subscribe((newId : number) => {

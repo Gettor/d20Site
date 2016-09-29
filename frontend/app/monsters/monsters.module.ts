@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
+import { Title, BrowserModule } from '@angular/platform-browser';
 import { monstersRouting } from './monsters.routing';
 import { MonstersComponent } from './monsters.component';
 import { ShowMonsterComponent } from './show-monster.component';
@@ -23,6 +23,7 @@ import { Ng2CompleterModule } from "ng2-completer";
     FindMonstersComponent,
   ],
   providers : [
+    Title,
     MonstersService
   ],
 })

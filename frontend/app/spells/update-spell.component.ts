@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Title } from '@angular/platform-browser';
 import { Subscription } from 'rxjs/Subscription';
 import { Observable } from 'rxjs/Observable';
 import { Spell } from './spell';
@@ -21,7 +22,7 @@ export class UpdateSpellComponent implements OnInit {
 
   sub : Subscription;
 
-  constructor(private route : ActivatedRoute, private router : Router, private spellsService : SpellsService) {
+  constructor(private route : ActivatedRoute, private router : Router, private titleService: Title, private spellsService : SpellsService) {
   }
 
   ngOnInit() {
@@ -30,7 +31,7 @@ export class UpdateSpellComponent implements OnInit {
       .concatAll()
       .subscribe(spell => {
         this.spell = spell;
-        console.log(spell);
+         this.titleService.setTitle( "d20Site - Edit Spell - " + this.spell.name );
     });
     this.sub = this.route.params
       .map((params : any) => (this.getMonster(+params['id'])))
@@ -38,8 +39,6 @@ export class UpdateSpellComponent implements OnInit {
       .subscribe(monster => {
         this.monster = monster;
         this.monsterUrl = this.monsterUrl + String(monster.id);
-        console.log(monster);
-        console.log(this.monsterUrl);
     });
   }
 

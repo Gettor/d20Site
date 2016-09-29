@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { CompleterData } from 'ng2-completer';
+import { Title } from '@angular/platform-browser';
 import { MonstersService } from './monsters.service';
 import { Miniature } from './../shared/miniature/miniature';
 
@@ -20,7 +21,9 @@ export class FindMonstersComponent {
    private temporaryMiniatures : Miniature[];
    private monsterMiniatures : Miniature[];
 
-   constructor(private monstersService: MonstersService) {
+   constructor(private titleService: Title,
+      private monstersService: MonstersService) {
+      this.titleService.setTitle( "d20Site - Find Monsters" );
       this.findService = monstersService.getFindService();
       monstersService.findResults().subscribe((miniatures : Miniature[]) => {
          this.temporaryMiniatures = miniatures;

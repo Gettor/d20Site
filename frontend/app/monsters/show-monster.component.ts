@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Title } from '@angular/platform-browser';
 import { Subscription } from 'rxjs/Subscription';
 import { Observable } from 'rxjs/Observable';
 import { Monster } from './monster';
@@ -17,7 +18,7 @@ export class ShowMonsterComponent implements OnInit {
 
   sub : Subscription;
 
-  constructor(private route : ActivatedRoute, private router : Router, private monstersService : MonstersService) {
+  constructor(private route : ActivatedRoute, private router : Router, private titleService: Title, private monstersService : MonstersService) {
   }
 
   ngOnInit() {
@@ -26,6 +27,7 @@ export class ShowMonsterComponent implements OnInit {
       .concatAll()
       .subscribe(monster => {
         this.monster = monster;
+        this.titleService.setTitle( "d20Site - View Monsters - " + this.monster.name );
     });
   }
 
