@@ -18,7 +18,12 @@
        </tr>
         <tr>
          <td style="text-align:right"><b>Description</b></td>
-         <td style="text-align:left">{{ spell.description }}</td>
+         <!-- <td style="text-align:left">{{ spell.description }}</td> -->
+         <td style="text-align:left">
+         <textarea columns="120" rows="5" class="form-control" id="description"
+              required
+              [(ngModel)]="spell.description" name="description"></textarea>
+         </td>
        </tr>
        <tr>
          <td style="text-align:right"><b>Save type:</b></td>
