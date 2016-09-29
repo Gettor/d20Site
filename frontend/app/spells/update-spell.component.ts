@@ -9,13 +9,6 @@ import { MonstersService } from '../monsters/monsters.service';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/concatAll';
 
-var saveTypes = {
-   0: [ "No save" ],
-   1: [ "Fortitude" ],
-   2: [ "Reflex" ],
-   3: [ "Will"]
-};
-
 @Component({
    selector : 'update-spell',
    templateUrl : 'app/spells/update-spell.component.html',
@@ -37,7 +30,6 @@ export class UpdateSpellComponent implements OnInit {
       .concatAll()
       .subscribe(spell => {
         this.spell = spell;
-        this.spell.save_type = saveTypes[spell.save_type];
         console.log(spell);
     });
     this.sub = this.route.params

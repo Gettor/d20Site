@@ -63,7 +63,7 @@ export class ShowSpellComponent implements OnInit {
   }
 
   redirectToUpdateSpell() {
-    this.router.navigateByUrl('spells/update/'+String(this.spell.id))
+    this.router.navigate(['spells/update/', this.spell.id])
   }
 
   onDeleteSpell() {

@@ -5,7 +5,7 @@
       <div class="table-responsive">
        <table class="table table-striped"><tbody>
         <tr>
-         <td style="text-align:right"><b>Name</b></td>
+         <td style="text-align:right"><label for="name"><b>Name</b></label></td>
          <td style="text-align:left">
           <input type="text" class="form-control" id="name"
               required
@@ -17,8 +17,7 @@
          <td style="text-align:left"><a href={{monsterUrl}}>{{ monster.name ? monster.name : "ERR: MONSTER NAME NOT DEFINED" }}</a></td>
        </tr>
         <tr>
-         <td style="text-align:right"><b>Description</b></td>
-         <!-- <td style="text-align:left">{{ spell.description }}</td> -->
+         <td style="text-align:right"><label for="description"><b>Description</b></label></td>
          <td style="text-align:left">
          <textarea columns="120" rows="5" class="form-control" id="description"
               required
@@ -27,11 +26,23 @@
        </tr>
        <tr>
          <td style="text-align:right"><b>Save type:</b></td>
-         <td style="text-align:left">{{ spell.save_type }}</td>
+         <td style="text-align:left">
+          <button *ngIf="spell.save_type == 0" type="button" class="btn btn-success" (click)="spell.save_type=0">No save</button>
+          <button *ngIf="spell.save_type != 0" type="button" class="btn btn-warning" (click)="spell.save_type=0">No save</button>
+          <button *ngIf="spell.save_type == 1" type="button" class="btn btn-success" (click)="spell.save_type=1">Fortitude</button>
+          <button *ngIf="spell.save_type != 1" type="button" class="btn btn-warning" (click)="spell.save_type=1">Fortitude</button>
+          <button *ngIf="spell.save_type == 2" type="button" class="btn btn-success" (click)="spell.save_type=2">Reflex</button>
+          <button *ngIf="spell.save_type != 2" type="button" class="btn btn-warning" (click)="spell.save_type=2">Reflex</button>
+          <button *ngIf="spell.save_type == 3" type="button" class="btn btn-success" (click)="spell.save_type=3">Will</button>
+          <button *ngIf="spell.save_type != 3" type="button" class="btn btn-warning" (click)="spell.save_type=3">Will</button>
+        </td>
        </tr>
        <tr>
-         <td style="text-align:right"><b>Permits spell resistance:</b></td>
-         <td style="text-align:left">{{ spell.permits_sr ? "Yes" : "No"}}</td>
+         <td style="text-align:right"><label for="permits_sr"><b>Permits spell resistance:</b></label></td>
+         <td style="text-align:left">
+          <input type="checkbox" class="checkbox" id="permits_sr"
+              [(ngModel)]="spell.permits_sr" name="permits_sr">
+         </td>
        </tr>
       </tbody></table></div>
      </div>
