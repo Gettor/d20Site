@@ -1,3 +1,4 @@
+import { ModuleWithProviders }  from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { SpellsComponent } from './spells.component';
 import { ShowSpellComponent } from './show-spell.component';
@@ -28,4 +29,4 @@ const spellsRoutes: Routes = [
   // },
 ];
 
-export const spellsRouting = RouterModule.forChild(spellsRoutes);
+export const spellsRouting : ModuleWithProviders = RouterModule.forChild(spellsRoutes);
