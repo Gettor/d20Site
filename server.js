@@ -97,10 +97,10 @@ app.get('/api/monsters/find', function (req, res) {
         });
 });
 
-//app.use(express.static(conf.staticDir))
+app.use(express.static('build'))
 
 models.sequelize.sync().then(function () {
-    app.listen(1337, function () {
-        console.log('Backend listening on port 1337!');
+    app.listen(3000, function () {
+        console.log('Server listening on port 3000!');
     });
 });

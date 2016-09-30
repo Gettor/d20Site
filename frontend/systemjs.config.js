@@ -6,10 +6,10 @@
   // paths serve as alias
   var paths = {
             'npm:': 'lib/'
-  },
+  };
   // map tells the System loader where to look for things
   var map = {
-    'app':                        'app', // 'dist',
+    'app':                        'app/', // 'dist',
     '@angular':                   'npm:@angular',
     'angular2-in-memory-web-api': 'npm:angular2-in-memory-web-api',
     'rxjs':                       'npm:rxjs',

@@ -13,3 +13,6 @@ npm-debug.log
 
 # doc build files
 doc/build/*
+
+# db files
+*.db

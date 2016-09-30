@@ -56,7 +56,9 @@ gulp.task("libs", () => {
             'reflect-metadata/*',
             'rxjs/**/*.js',
             'zone.js/dist/**',
-            '@angular/**/bundles/**'
+            '@angular/**/bundles/**',
+            'ng2-bs3-modal/**',
+            'ng2-completer/bundles/*',
         ], {cwd: "node_modules/**"}) /* Glob required here. */
         .pipe(gulp.dest("build/lib"));
 });
