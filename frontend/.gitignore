@@ -1,8 +1,0 @@
-# generated *.js files
-*.js
-
-# generated map files
-*.js.map
-
-# typings directory
-typings/
