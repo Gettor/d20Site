@@ -55,6 +55,7 @@ gulp.task("libs", () => {
             'systemjs/dist/system.src.js',
             'reflect-metadata/*',
             'rxjs/**/*.js',
+            'rxjs/**/*.js.map',
             'zone.js/dist/**',
             '@angular/**/bundles/**',
             'ng2-bs3-modal/**',
