@@ -7,6 +7,7 @@
     "clean": "gulp clean",
     "compile": "gulp compile",
     "build": "gulp build",
+    "fill_database": "node dbFill.js",
     "start": "concurrent --kill-others \"gulp watch\" \"node server.js\"",
     "postinstall": "typings install"
   },
