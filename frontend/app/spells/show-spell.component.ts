@@ -4,6 +4,7 @@ import { Title } from '@angular/platform-browser';
 import { Subscription } from 'rxjs/Subscription';
 import { Observable } from 'rxjs/Observable';
 import { Spell } from './spell';
+import { SpellEffect } from './spell_effect';
 import { Monster } from '../monsters/monster';
 import { SpellsService } from './spells.service';
 import { MonstersService } from '../monsters/monsters.service';
@@ -25,6 +26,7 @@ var saveTypes = {
 export class ShowSpellComponent implements OnInit {
   @Input() spell : Spell = new Spell();
   monster : Monster = new Monster();
+  spellEffects : SpellEffect[] = new Array<SpellEffect>();
   monsterUrl : string = "monsters/show/";
   updateState : string;
 
@@ -42,6 +44,13 @@ export class ShowSpellComponent implements OnInit {
         this.spell.save_type = saveTypes[spell.save_type];
         this.titleService.setTitle( "d20Site - View Spells - " + this.spell.name );
     });
+    this.sub = this.route.params
+      .map((params : any) => (this.getSpellEffects(+params['id'])))
+      .concatAll()
+      .subscribe(spellEffects => {
+        this.spellEffects = spellEffects;
+        console.log(this.spellEffects[0]);
+    });  
     this.sub = this.route.params
       .map((params : any) => (this.getMonster(+params['id'])))
       .concatAll()
@@ -62,6 +71,10 @@ export class ShowSpellComponent implements OnInit {
 
   getMonster(id : number) : Observable<Monster> {
     return this.spellsService.getMonster(id);
+  }
+
+  getSpellEffects(id : number) : Observable<SpellEffect[]> {
+    return this.spellsService.getSpellEffects(id);
   }
 
   redirectToUpdateSpell() {
