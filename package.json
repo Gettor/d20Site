@@ -7,7 +7,7 @@
     "clean": "gulp clean",
     "compile": "gulp compile",
     "build": "gulp build",
-    "start": "concurrent --kill-others \"gulp watch\" \"lite-server\"",
+    "start": "concurrent --kill-others \"gulp watch\" \"node server.js\"",
     "postinstall": "typings install"
   },
   "dependencies": {
@@ -32,7 +32,6 @@
     "zone.js": "^0.6.17",
 
     "body-parser": "^1.15.2",
-    "cors": "^2.8.0",
     "express": "^4.14.0",
     "sequelize": "^3.24.1",
     "sequelize-cli": "^2.4.0",
