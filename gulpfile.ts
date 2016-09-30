@@ -50,10 +50,10 @@ gulp.task("resources", () => {
  */
 gulp.task("libs", () => {
     return gulp.src([
-            'core-js/client/shim.min.js',
+            'core-js/client/*',
             'systemjs/dist/system-polyfills.js',
             'systemjs/dist/system.src.js',
-            'reflect-metadata/Reflect.js',
+            'reflect-metadata/*',
             'rxjs/**/*.js',
             'zone.js/dist/**',
             '@angular/**/bundles/**'
