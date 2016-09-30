@@ -2,16 +2,20 @@
 var fs = require("fs");
 var qs = require('querystring');
 var bodyParser = require("body-parser");
-var cors = require('cors');
 var express = require('express');
 var app = express();
+var models = require("./db/models");
+var path = require("path");
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended : true}));
-// TODO: remove after fix CORS issue
-app.use(cors());
+app.use(express.static('build'));
 
-var models = require("./db/models");
+app.use(function (req, res, next) {
+  res.header("Access-Control-Allow-Origin", "http://localhost:3000");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
 
 app.get('/api/monsters/get/:id', function (req, res) {
     models.Monster
@@ -108,10 +112,12 @@ app.get('/api/monsters/find', function (req, res) {
         });
 });
 
-//app.use(express.static(conf.staticDir))
+app.get('/*', function (req, res) {
+    res.sendFile(path.resolve(__dirname, 'build/index.html'));
+});
 
 models.sequelize.sync().then(function () {
-    app.listen(1337, function () {
-        console.log('Backend listening on port 1337!');
+    app.listen(3000, function () {
+        console.log('Server listening on port 3000!');
     });
 });

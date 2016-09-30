@@ -20,11 +20,22 @@ In both backend and frontend directories (tested on npm 3.9.5):
 
 `npm install`
 
+## Build project
+
+Before you can start server you must compile Angular 2 project
+and setup static files. To do this type:
+
+`npm run build`
+
 ## Run server
 
 Enter frontend or backend directory and type:
 
 `npm start`
+
+After that server will start at `http://localhost:3000`.
+When you touch project file new content will be compiled
+and installed to build directory.
 
 ## Database
 
@@ -34,7 +45,7 @@ If you ever feel the need to change anything in database schema, refer to dbMake
 
 When done, create new database with command:
 
-`node dbMaker.js`
+`npm run fill_database`
 
 ***BE CAREFUL:*** above command will **replace** existing database file (old one will be backed up though).
 
@@ -66,7 +77,6 @@ Useful link(syntax cheatsheet): http://thomas-cokelaer.info/tutorials/sphinx/res
   - in show component:
     - add more fields
   - add find component
-- create one server for frontend and backend
 - unify monsters and spells modules to use same convention
 - MG table draft
 - add account support

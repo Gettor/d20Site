@@ -23,7 +23,7 @@ import { routing, appRoutingProviders } from './app.routing';
   declarations : [ AppComponent ],
   providers : [
     appRoutingProviders,
-    { provide : 'API_ENDPOINT',  useValue : 'http://127.0.0.1:1337/api'}
+    { provide : 'API_ENDPOINT',  useValue : 'http://localhost:3000/api'}
   ],
   bootstrap : [ AppComponent ]
 })

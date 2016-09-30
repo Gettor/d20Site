@@ -2,8 +2,17 @@
 # nodejs modules directory
 node_modules/
 
+# build directory
+build/
+
+# typings directory
+typings/
+
 # npm debug logs
 npm-debug.log
 
 # doc build files
 doc/build/*
+
+# db files
+*.db
