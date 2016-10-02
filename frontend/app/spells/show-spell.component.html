@@ -28,22 +28,6 @@
      <td style="text-align:right"><b>Permits spell resistance:</b></td>
      <td style="text-align:left">{{ spell.permits_sr ? "Yes" : "No"}}</td>
    </tr>
-   <tr>
-     <td style="text-align:right"><b>Spell Effects:</b></td>
-     <td style="text-align:left">
-      <table class="table table-striped"><tbody>
-      <tr *ngFor="let effect of spellEffects; let i = index">
-        <!-- {{$index}} {{item}} -->
-        <!-- <tr> -->
-          <td style="text-align:right">Effect {{ i }}</td>
-          <td style="text-align:right">Group_id {{ effect.group_id }}</td>
-          <td style="text-align:right">Condition {{ effect.condition }}</td>
-          <td style="text-align:right">Description {{ effect.description }}</td>
-        <!-- </tr> -->
-      </tr>
-    </tbody></table>
-     </td>
-   </tr>
   </tbody></table></div>
  </div>
   <div class="panel-footer">

@@ -3,7 +3,6 @@ import { Headers, Http, Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import { Spell } from './spell'
-import { SpellEffect } from './spell_effect'
 import { Monster } from '../monsters/monster';
 
 
@@ -24,11 +23,6 @@ export class SpellsService {
   public getSpell(id : number) : Observable<Spell> {
     return this._http.get(this.actionUrl + '/get/' + id)
       .map((response : Response) => (<Spell>response.json()));
-  }
-
-  public getSpellEffects(id : number) : Observable<SpellEffect[]> {
-    return this._http.get(this.actionUrl + '/getEffects/' + id)
-      .map((response : Response) => (<SpellEffect[]>response.json()));
   }
 
   public getMonster(id : number) : Observable<Monster> {

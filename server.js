@@ -33,17 +33,6 @@ app.get('/api/spells/get/:id', function (req, res) {
         });
 });
 
-app.get('/api/spells/getEffects/:id', function (req, res) {
-    models.SpellEffect
-      .findAll({
-        where : { SpellId : req.params.id}
-      })
-      .then(function(found) {
-        res.json(found);
-        res.end();
-      });
-});
-
 app.get('/api/spells/getMonster/:id', function (req, res) {
     models.Spell
       .findById(req.params.id)
