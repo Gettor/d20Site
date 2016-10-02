@@ -71,7 +71,7 @@ gulp.task('watch', function () {
     gulp.watch(["frontend/**/*.ts", "backend/**/*.js" ], ['compile']).on('change', function (e) {
         console.log('Source file ' + e.path + ' has been changed. Compiling.');
     });
-    gulp.watch(["frontend/**/*.html", "src/**/*.css"], ['resources']).on('change', function (e) {
+    gulp.watch(["frontend/**/*.html", "frontend/**/*.css"], ['resources']).on('change', function (e) {
         console.log('Resource file ' + e.path + ' has been changed. Updating.');
     });
 });
