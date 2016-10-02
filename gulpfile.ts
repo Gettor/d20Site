@@ -46,6 +46,13 @@ gulp.task("resources", () => {
 });
 
 /**
+ * Recreate d20Seq.db file via dbFill.js script
+ */
+gulp.task("makeDb", () => {
+    return require('./dbFill.js');
+});
+
+/**
  * Copy all required libraries into build directory.
  */
 gulp.task("libs", () => {
@@ -79,6 +86,6 @@ gulp.task('watch', function () {
 /**
  * Build the project.
  */
-gulp.task("build", ['compile', 'resources', 'libs'], () => {
+gulp.task("build", ['compile', 'resources', 'libs', 'makeDb'], () => {
     console.log("Building the project ...");
 });
