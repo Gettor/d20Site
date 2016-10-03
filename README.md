@@ -69,6 +69,7 @@ Useful link(syntax cheatsheet): http://thomas-cokelaer.info/tutorials/sphinx/res
 
 - in spells module:
   - in update component:
+    - make input for SpellRange (check out https://github.com/Bogdan1975/ng2-slider-component )
     - make input fields change their background color to yellow when change is detected
     - add more fields for update
     - add delete option
