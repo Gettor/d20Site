@@ -7,14 +7,19 @@ import { Miniature } from './../shared/miniature/miniature';
 @Component({
    selector : 'find-monsters',
    template : `
-      <h1>Find monsters</h1>
-      <div class="row"><div class="col-md-6">
-         <form (ngSubmit)="onSubmit()">
-            <ng2-completer [(ngModel)]="searchStr" [dataService]="findService" [minSearchLength]="1" name="autocomplete"></ng2-completer>
-         </form>
-      </div></div>
+      <div class="container center-block">
+         <div class="row"><div class="col-md-12">
+            <form (ngSubmit)="onSubmit()">
+               <ng2-completer [(ngModel)]="searchStr" [dataService]="findService" [minSearchLength]="1" name="autocomplete"></ng2-completer>
+            </form>
+         </div></div>
+      </div>
       <miniature-container [miniatures]="monsterMiniatures"></miniature-container>
-   `
+   `,
+   styles : [
+      ':host /deep/ .completer-input { width: 100%; }',
+      ':host /deep/ .completer-dropdown { width : 100% !important;}',
+   ]
 })
 
 export class FindMonstersComponent {
