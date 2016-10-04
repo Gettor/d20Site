@@ -8,9 +8,11 @@ import { Miniature } from './../shared/miniature/miniature';
    selector : 'find-monsters',
    template : `
       <h1>Find monsters</h1>
-      <form (ngSubmit)="onSubmit()">
-         <ng2-completer [(ngModel)]="searchStr" [dataService]="findService" [minSearchLength]="1" name="autocomplete"></ng2-completer>
-      </form>
+      <div class="row"><div class="col-md-6">
+         <form (ngSubmit)="onSubmit()">
+            <ng2-completer [(ngModel)]="searchStr" [dataService]="findService" [minSearchLength]="1" name="autocomplete"></ng2-completer>
+         </form>
+      </div></div>
       <miniature-container [miniatures]="monsterMiniatures"></miniature-container>
    `
 })
