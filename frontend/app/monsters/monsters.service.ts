@@ -62,4 +62,8 @@ export class MonstersService {
         return result;
       });
   }
+
+  public extractId(item : CompleterItem) : number {
+    return item.originalObject.id;
+  }
 }
