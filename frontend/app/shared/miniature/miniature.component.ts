@@ -5,13 +5,16 @@ import { Miniature } from './miniature';
 @Component({
    selector : 'miniature-show',
    template : `
-      <div class="panel panel-default" (click)="onClick()">
+      <div class="panel panel-default hover-highlight" (click)="onClick()">
          <div class="panel-heading">{{ miniature.header }}</div>
          <div class="panel-body">
             {{ miniature.data }}
          </div>
       </div>
-   `
+   `,
+   styles : [
+      ':host .hover-highlight:hover { border-color: black; border-size: 40px; }',
+   ]
 })
 
 export class MiniatureComponent {
