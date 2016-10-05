@@ -67,6 +67,7 @@ gulp.task("libs", () => {
             '@angular/**/bundles/**',
             'ng2-bs3-modal/**',
             'ng2-completer/bundles/*',
+            'ng2-pagination/**',
         ], {cwd: "node_modules/**"}) /* Glob required here. */
         .pipe(gulp.dest("build/lib"));
 });
@@ -78,7 +79,7 @@ gulp.task('watch', function () {
     gulp.watch(["frontend/**/*.ts", "backend/**/*.js" ], ['compile']).on('change', function (e) {
         console.log('Source file ' + e.path + ' has been changed. Compiling.');
     });
-    gulp.watch(["frontend/**/*.html", "frontend/**/*.css"], ['resources']).on('change', function (e) {
+    gulp.watch(["frontend/**/*.html", "frontend/**/*.css", "frontend/*.js"], ['resources']).on('change', function (e) {
         console.log('Resource file ' + e.path + ' has been changed. Updating.');
     });
 });

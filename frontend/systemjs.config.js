@@ -15,6 +15,7 @@
     'rxjs':                       'npm:rxjs',
     'ng2-bs3-modal':              'npm:ng2-bs3-modal',
     'ng2-completer':              'npm:ng2-completer/bundles',
+    'ng2-pagination':             'npm:ng2-pagination',
   };
   // packages tells the System loader how to load when no filename and/or no extension
   var packages = {
@@ -22,6 +23,7 @@
     'rxjs':                       { defaultExtension: 'js' },
     'angular2-in-memory-web-api': { main: 'index.js', defaultExtension: 'js' },
     'ng2-completer':              { main: 'ng2-completer.js', format: 'cjs' },
+    'ng2-pagination':             { main: 'index.js', defaultExtension: 'js' },
   };
   var ngPackageNames = [
     'common',
