@@ -6,10 +6,13 @@ import { Miniature } from './miniature';
    template : `
       <div class="container">
           <div class="row">
-              <div class="col-md-3" *ngFor="let miniature of miniatures">
-                  <miniature-show [miniature]="miniature">
-                  </miniature-show>
+              <div class="col-md-3" *ngFor="let miniature of miniatures
+               | paginate : { itemsPerPage : 16, currentPage : p}">
+                     <miniature-show [miniature]="miniature"></miniature-show>
               </div>
+          </div>
+          <div class="row" style="text-align:center">
+              <pagination-controls *ngIf="miniatures && miniatures.length > 0" (pageChange)="p = $event"></pagination-controls>
           </div>
       </div>
    `
