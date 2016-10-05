@@ -21,10 +21,13 @@ models.sequelize.sync({force: true}).then(function () {
             name: 'Giant monkey',
             custom_description: 'Reminds old years',
             });
-        models.Monster.create({
-            name: 'Murlok',
-            custom_description: 'Gruulululuuuuuluuu!',
-            });
+
+        for (i = 0; i < 100; i++) {
+            models.Monster.create({
+                name: 'Murlok ' + i,
+                custom_description: 'Gruulululuuuuuluuu!',
+                });
+        }
     });
 
     models.UserTypes.sync().then(function () {

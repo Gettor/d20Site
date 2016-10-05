@@ -11,7 +11,7 @@ const tslint = require('gulp-tslint');
  * Remove build directory.
  */
 gulp.task('clean', (cb) => {
-    return del(["build"], cb);
+    return del(["build", "d20Seq.db*"], cb);
 });
 
 /**
@@ -48,7 +48,7 @@ gulp.task("resources", () => {
 /**
  * Recreate d20Seq.db file via dbFill.js script
  */
-gulp.task("makeDb", () => {
+gulp.task("fill_database", () => {
     return require('./dbFill.js');
 });
 
@@ -86,6 +86,6 @@ gulp.task('watch', function () {
 /**
  * Build the project.
  */
-gulp.task("build", ['compile', 'resources', 'libs', 'makeDb'], () => {
+gulp.task("build", ['compile', 'resources', 'libs', 'fill_database'], () => {
     console.log("Building the project ...");
 });
