@@ -11,6 +11,9 @@ import 'rxjs/add/operator/concatAll';
 @Component({
    selector : 'show-monster',
    templateUrl : 'app/monsters/show-monster.component.html',
+   styles : [
+     ':host table tbody tr td { text-align:center; }',
+   ],
 })
 
 export class ShowMonsterComponent implements OnInit {
