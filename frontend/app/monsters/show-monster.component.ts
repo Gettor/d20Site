@@ -4,6 +4,7 @@ import { Title } from '@angular/platform-browser';
 import { Subscription } from 'rxjs/Subscription';
 import { Observable } from 'rxjs/Observable';
 import { Monster } from './monster';
+import { SpellInfo } from './spell-info';
 import { MonstersService } from './monsters.service';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/concatAll';
@@ -20,6 +21,7 @@ export class ShowMonsterComponent implements OnInit {
   @Input() monster : Monster = new Monster();
 
   sub : Subscription;
+  monsterSpells : SpellInfo[];
 
   constructor(private route : ActivatedRoute, private router : Router, private titleService: Title, private monstersService : MonstersService) {
   }
@@ -31,6 +33,10 @@ export class ShowMonsterComponent implements OnInit {
       .subscribe(monster => {
         this.monster = monster;
         this.titleService.setTitle( "d20Site - View Monsters - " + this.monster.name );
+        this.monstersService.getSpells(monster.id)
+          .subscribe(spells => {
+            this.monsterSpells = spells;
+          });
     });
   }
 

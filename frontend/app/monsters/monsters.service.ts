@@ -3,6 +3,7 @@ import { Headers, Http, Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import { Monster } from './monster'
+import { SpellInfo } from './spell-info'
 import { Miniature } from './../shared/miniature/miniature';
 import { CompleterService, CompleterData, CompleterItem } from 'ng2-completer';
 
@@ -41,6 +42,11 @@ export class MonstersService {
   public deleteMonster(id : number) : Observable<void> {
     return this.http.post(this.actionUrl + '/del/', JSON.stringify({ "id" : id}), { headers : this.headers })
       .map((response : Response) => (null));
+  }
+
+  public getSpells(id : number) : Observable<SpellInfo[]> {
+    return this.http.get(this.actionUrl + '/getSpells/' + id)
+      .map((response : Response) => (<SpellInfo[]>response.json()));
   }
 
   public getFindService() : CompleterData {
