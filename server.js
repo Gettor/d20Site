@@ -33,7 +33,7 @@ app.get('/api/spells/get/:id', function (req, res) {
         });
 });
 
-app.get('api/monsters/getSpells/:id', function (req, res) {
+app.get('/api/monsters/getSpells/:id', function (req, res) {
     models.Monster
       .findById(req.params.id)
       .then(function(monster) {
@@ -112,8 +112,9 @@ app.get('/api/monsters/find', function (req, res) {
 });
 
 app.get('/*', function (req, res) {
-    res.sendFile(path.resolve(__dirname, 'build/index.html'));
+  res.sendFile(path.resolve(__dirname, 'build/index.html'));
 });
+
 
 models.sequelize.sync().then(function () {
     app.listen(3000, function () {
