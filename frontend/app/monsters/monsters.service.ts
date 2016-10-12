@@ -44,9 +44,20 @@ export class MonstersService {
       .map((response : Response) => (null));
   }
 
-  public getSpells(id : number) : Observable<SpellInfo[]> {
+  public getSpells(id : number) : Observable<Miniature[]> {
     return this.http.get(this.actionUrl + '/getSpells/' + id)
-      .map((response : Response) => (<SpellInfo[]>response.json()));
+      .map((response : Response) => (<SpellInfo[]>response.json()))
+      .map((spells : SpellInfo[]) => {
+        let result : Miniature[] = [];
+        for (let spell of spells) {
+          result.push(new Miniature(
+            spell.name,
+            '/spells/show/' + spell.id,
+            'bbb',
+            'none'));
+        }
+        return result;
+      });
   }
 
   public getFindService() : CompleterData {

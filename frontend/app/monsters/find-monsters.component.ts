@@ -18,8 +18,8 @@ import { Miniature } from './../shared/miniature/miniature';
       <miniature-container [miniatures]="monsterMiniatures"></miniature-container>
    `,
    styles : [
-      ':host /deep/ .completer-input { width: 100%; }',
-      ':host /deep/ .completer-dropdown { width : 100% !important;}',
+      ':host /deep/ ng2-completer .completer-input { width: 100%; }',
+      ':host /deep/ ng2-completer .completer-dropdown { width : 100%; }',
    ]
 })
 

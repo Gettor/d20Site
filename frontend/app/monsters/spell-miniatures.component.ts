@@ -1,15 +1,15 @@
 import { Component, Input } from '@angular/core';
-import { SpellInfo } from './spell-info';
+import { Miniature } from './../shared/miniature/miniature';
 
 @Component({
    selector : 'spell-miniatures',
    template : `
-    <div class="container">
-      {{ spells }}
+    <div class="tab-content">
+      <miniature-container [miniatures]="spells"></miniature-container>
     </div>
    `
 })
 
 export class SpellMiniaturesComponent {
-  @Input() spells : SpellInfo[];
+  @Input() spells : Miniature[];
 }

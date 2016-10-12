@@ -1,85 +1,91 @@
 <div class="panel panel-default" align="center">
  <div class="panel-heading"><h2>{{ monster.name }}</h2></div>
  <div class="panel-body">
-   <div class="table-responsive">
-   <table class="table table-striped"><tbody>
-   <tr>
-     <td><b>Description</b></td>
-     <td>{{ monster.custom_description }}</td>
-     <td>
+   <div class="container-fluid">
+   <div class="row">
+     <div class="col-xs-6 col-md-4"><b>Description</b></div>
+     <div class="col-xs-6 col-md-4">{{ monster.custom_description }}</div>
+     <div class="col-xs-6 col-md-4">
        <edit-modal
          [label]="'Description'"
          [inputType]="'text'"
          [value]="monster.custom_description"
          (newValue)="monster.custom_description=$event; onUpdateMonster()">
        </edit-modal>
-     </td>
-   </tr>
-   <tr>
-     <td><b>Hit dice type</b></td>
-     <td>{{ monster.hd_type }}</td>
-     <td>
+     </div>
+   </div>
+   <hr>
+   <div class="row">
+     <div class="col-xs-6 col-md-4"><b>Hit dice type</b></div>
+     <div class="col-xs-6 col-md-4">{{ monster.hd_type }}</div>
+     <div class="col-xs-6 col-md-4">
        <edit-modal
          [label]="'Hit dice type'"
          [inputType]="'number'"
          [value]="monster.hd_type"
          (newValue)="monster.hd_type=$event; onUpdateMonster()">
        </edit-modal>
-     </td>
-   </tr>
-   <tr>
-     <td><b>Hit dice amount</b></td>
-     <td>{{ monster.hd_amount }}</td>
-     <td>
+     </div>
+   </div>
+   <hr>
+   <div class="row">
+     <div class="col-xs-6 col-md-4"><b>Hit dice amount</b></div>
+     <div class="col-xs-6 col-md-4">{{ monster.hd_amount }}</div>
+     <div class="col-xs-6 col-md-4">
        <edit-modal
          [label]="'Hit dice amount'"
          [inputType]="'number'"
          [value]="monster.hd_amount"
          (newValue)="monster.hd_amount=$event; onUpdateMonster()">
        </edit-modal>
-     </td>
-   </tr>
-   <tr>
-     <td><b>Hit points</b></td>
-     <td>{{ monster.hp }}</td>
-     <td>
+     </div>
+   </div>
+   <hr>
+   <div class="row">
+     <div class="col-xs-6 col-md-4"><b>Hit points</b></div>
+     <div class="col-xs-6 col-md-4">{{ monster.hp }}</div>
+     <div class="col-xs-6 col-md-4">
        <edit-modal
          [label]="'Hit points'"
          [inputType]="'number'"
          [value]="monster.hp"
          (newValue)="monster.hp=$event; onUpdateMonster()">
        </edit-modal>
-     </td>
-   </tr>
-   <tr>
-     <td><b>Initiative</b></td>
-     <td>{{ monster.initiative }}</td>
-     <td>
+     </div>
+   </div>
+   <hr>
+   <div class="row">
+     <div class="col-xs-6 col-md-4"><b>Initiative</b></div>
+     <div class="col-xs-6 col-md-4">{{ monster.initiative }}</div>
+     <div class="col-xs-6 col-md-4">
        <edit-modal
          [label]="'Initiative'"
          [inputType]="'number'"
          [value]="monster.initiative"
          (newValue)="monster.initiative=$event; onUpdateMonster()">
        </edit-modal>
-     </td>
-   </tr>
-   <tr>
-     <td><b>Speed</b></td>
-     <td>{{ monster.speed }}</td>
-     <td>
+     </div>
+   </div>
+   <hr>
+   <div class="row">
+     <div class="col-xs-6 col-md-4"><b>Speed</b></div>
+     <div class="col-xs-6 col-md-4">{{ monster.speed }}</div>
+     <div class="col-xs-6 col-md-4">
        <edit-modal
          [label]="'Speed'"
          [inputType]="'number'"
          [value]="monster.speed"
          (newValue)="monster.speed=$event; onUpdateMonster()">
        </edit-modal>
-     </td>
-   </tr>
-   <tr>
-     <td><b>Spells</b></td>
-     <td><spell-miniatures [spells]="monsterSpells"></spell-miniatures></td>
-   </tr>
-   </tbody></table></div>
+     </div>
+   </div>
+   <hr>
+   <div class="row">
+     <div class="col-xs-6 col-md-4"><b>Spells</b></div>
+     <div class="col-xs-6 col-md-4"><spell-miniatures [spells]="monsterSpells"></spell-miniatures></div>
+     <div class="col-xs-6 col-md-4"></div>
+   </div>
+   </div>
  </div>
  <div class="panel-footer">
    <button class="btn btn-default" (click)="onDeleteMonster()">Delete</button>
