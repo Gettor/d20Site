@@ -8,7 +8,7 @@
     "compile": "gulp compile",
     "build": "gulp build",
     "fill_database": "gulp fill_database",
-    "start": "concurrently --kill-others \"gulp watch\" \"nodemon server.js\"",
+    "start": "concurrently --kill-others \"gulp watch\" \"nodemon -w server.js server.js\"",
     "postinstall": "typings install"
   },
   "dependencies": {
