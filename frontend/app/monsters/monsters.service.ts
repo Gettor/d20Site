@@ -54,7 +54,7 @@ export class MonstersService {
             spell.name,
             '/spells/show/' + spell.id,
             'bbb',
-            'none'));
+            spell.description));
         }
         return result;
       });

@@ -4,9 +4,11 @@ import { Miniature } from './../shared/miniature/miniature';
 @Component({
    selector : 'spell-miniatures',
    template : `
-    <div class="tab-content">
-      <miniature-container [miniatures]="spells"></miniature-container>
-    </div>
+    <miniature-container
+      [miniatures]="spells"
+      [miniatureClass]="'col-md-12'"
+      [itemsPerPage]="4"
+   ></miniature-container>
    `
 })
 
