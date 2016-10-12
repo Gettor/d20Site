@@ -8,7 +8,7 @@
     "compile": "gulp compile",
     "build": "gulp build",
     "fill_database": "gulp fill_database",
-    "start": "concurrently --kill-others \"gulp watch\" \"node server.js\"",
+    "start": "concurrently --kill-others \"gulp watch\" \"nodemon server.js\"",
     "postinstall": "typings install"
   },
   "dependencies": {
@@ -39,7 +39,7 @@
   },
   "devDependencies": {
     "concurrently": "^2.0.0",
-    "lite-server": "^2.2.0",
+    "nodemon": "^1.11.0",
     "typescript": "^1.8.10",
     "typings": "^1.0.4",
     "del": "^2.2.0",
