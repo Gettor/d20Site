@@ -4,7 +4,7 @@ import { Miniature } from './miniature';
 @Component({
    selector : 'miniature-container',
    template : `
-      <div class="container">
+      <div class="container-fluid">
           <div class="row">
               <div class="col-md-3" *ngFor="let miniature of miniatures
                | paginate : { itemsPerPage : 16, currentPage : p}">
