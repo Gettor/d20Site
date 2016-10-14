@@ -6,6 +6,27 @@ var express = require('express');
 var app = express();
 var models = require("./db/models");
 var path = require("path");
+var jwt = require('jsonwebtoken');
+var passport = require('passport');
+var JwtStrategy = require('passport-jwt').Strategy;
+var ExtractJwt = require('passport-jwt').ExtractJwt;
+
+var opts = {}
+opts.jwtFromRequest = ExtractJwt.fromAuthHeader();
+opts.secretOrKey = 'secret';
+
+passport.use(new JwtStrategy(opts, function(jwtPayload, done) {
+    User.findOne({id: jwtPayload.sub}, function(err, user) {
+        if (err) {
+            return done(err, false);
+        }
+        if (user) {
+            done(null, user);
+        } else {
+            done(null, false);
+        }
+    });
+}));
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended : true}));
@@ -15,6 +36,36 @@ app.use(function (req, res, next) {
   res.header("Access-Control-Allow-Origin", "http://localhost:3000");
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
   next();
+});
+
+app.post('/api/login', function (req, res) {
+  var user = req.body;
+  models.User.findOne({
+    where : {
+      login : user.login
+    }
+  })
+  .then(function(foundUser) {
+    if (!foundUser || !foundUser.verifyPassword(user.password)) {
+      res.end();
+    }
+    else {
+      var token = jwt.sign(user, opts.secretOrKey, {
+        expiresIn : '24h'
+      });
+      res.json({
+        token : token
+      });
+    }
+  });
+});
+
+app.post('/api/login/new', function (req, res) {
+  var user = req.body;
+  var newUser = models.User.build({ login : user.login });
+  newUser.setPassword(user.password);
+  newUser.save();
+  res.end();
 });
 
 app.get('/api/monsters/get/:id', function (req, res) {
@@ -99,16 +150,16 @@ app.get('/api/monsters/find', function (req, res) {
     var toFind = req.query.searchstr;
 
     models.Monster.findAll({
-        where : {
-            name : {
-                $like : '%' + toFind + '%'
-            }
+      where : {
+        name : {
+          $like : '%' + toFind + '%'
         }
+      }
     })
-        .then(function(found) {
-            res.json(found);
-            res.end();
-        });
+    .then(function(found) {
+        res.json(found);
+        res.end();
+    });
 });
 
 app.get('/*', function (req, res) {
