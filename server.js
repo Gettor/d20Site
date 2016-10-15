@@ -38,7 +38,7 @@ app.use(function (req, res, next) {
   next();
 });
 
-app.post('/api/login', function (req, res) {
+app.post('/api/user/login', function (req, res) {
   var user = req.body;
   models.User.findOne({
     where : {
@@ -60,7 +60,7 @@ app.post('/api/login', function (req, res) {
   });
 });
 
-app.post('/api/login/new', function (req, res) {
+app.post('/api/user/new', function (req, res) {
   var user = req.body;
   var newUser = models.User.build({ login : user.login });
   newUser.setPassword(user.password);
