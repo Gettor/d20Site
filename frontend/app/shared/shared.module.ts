@@ -7,6 +7,7 @@ import { MiniatureContainerComponent } from './miniature/miniature-container.com
 import { EditModalComponent } from './edit-modal.component';
 import { Ng2Bs3ModalModule } from 'ng2-bs3-modal/ng2-bs3-modal';
 import { Ng2PaginationModule } from 'ng2-pagination';
+import { AUTH_PROVIDERS } from 'angular2-jwt';
 
 @NgModule({
   imports: [
@@ -19,6 +20,9 @@ import { Ng2PaginationModule } from 'ng2-pagination';
     EditModalComponent,
     MiniatureComponent,
     MiniatureContainerComponent,
+  ],
+  providers: [
+    AUTH_PROVIDERS
   ],
   exports: [
     EditModalComponent,
