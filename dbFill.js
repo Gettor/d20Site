@@ -63,4 +63,11 @@ models.sequelize.sync({force: true}).then(function () {
             });
         }
     });
+
+    var ala = models.User.build({
+        login: 'ala'
+    });
+    ala.setPassword('makota');
+    ala.save();
+
 });
