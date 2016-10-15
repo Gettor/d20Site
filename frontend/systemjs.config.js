@@ -16,6 +16,9 @@
     'ng2-bs3-modal':              'npm:ng2-bs3-modal',
     'ng2-completer':              'npm:ng2-completer/bundles',
     'ng2-pagination':             'npm:ng2-pagination',
+    'angular2-jwt':               'npm:angular2-jwt/angular2-jwt.js',
+    'js-base64':                  'npm:js-base64/base64.js',
+    'buffer':                     '@empty',
   };
   // packages tells the System loader how to load when no filename and/or no extension
   var packages = {

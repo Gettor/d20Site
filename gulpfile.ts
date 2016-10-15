@@ -68,6 +68,8 @@ gulp.task("libs", () => {
             'ng2-bs3-modal/**',
             'ng2-completer/bundles/*',
             'ng2-pagination/**',
+            'angular2-jwt/**',
+            'js-base64/**',
         ], {cwd: "node_modules/**"}) /* Glob required here. */
         .pipe(gulp.dest("build/lib"));
 });
