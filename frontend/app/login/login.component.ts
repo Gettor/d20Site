@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { UserService } from '../shared/user/user.service';
-import { UserData } from './userdata';
 
 @Component({
   selector : 'my-login',
@@ -9,35 +8,40 @@ import { UserData } from './userdata';
   template : `
   <div *ngIf="!isLoggedIn" class="container">
       <h1>Login</h1>
-      <form>
+      <form (ngSubmit)="onSubmit()">
         <div class="form-group">
           <label for="username">Username</label>
           <input type="text" class="form-control" id="username" required
-            [(ngModel)]=user.username name="username">
+            [(ngModel)]="login" name="username">
         </div>
         <div class="form-group">
           <label for="password">Password</label>
-          <input type="text" class="form-control" id="password" required
-            [(ngModel)]=user.password name="password">
+          <input type="password" class="form-control" id="password" required
+            [(ngModel)]="password" name="password">
         </div>
         <button type="submit" class="btn btn-default">Submit</button>
       </form>
     </div>
   <div *ngIf="isLoggedIn" class="container">
-    <h1>Welcome {{user.usename}}</h1>
+    <h1>Welcome {{login}}</h1>
   </div>
   `
 })
 
 export class LoginComponent implements OnInit {
-  private user = new UserData();
+  private login : string;
+  private password : string;
   private isLoggedIn = false;
 
-  constructor(private _userService : UserService, private titleService: Title) {}
+  constructor(private userService : UserService, private titleService: Title) {}
 
   ngOnInit() {
     this.titleService.setTitle( "d20Site - Login" );
-    // TODO: enable when add backend support
-    //this.isLoggedIn = this._userService.isLogged();
+    this.isLoggedIn = this.userService.isLogged();
+  }
+
+  onSubmit() {
+    this.userService.login(this.login, this.password)
+    .subscribe((isLoggedIn) => ( this.isLoggedIn = isLoggedIn ));
   }
 }
