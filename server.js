@@ -47,7 +47,7 @@ app.post('/api/user/login', function (req, res) {
   })
   .then(function(foundUser) {
     if (!foundUser || !foundUser.verifyPassword(user.password)) {
-      res.end();
+      res.json({});
     }
     else {
       var token = jwt.sign(user, opts.secretOrKey, {
