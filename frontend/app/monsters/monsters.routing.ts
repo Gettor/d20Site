@@ -1,4 +1,5 @@
 import { Routes, RouterModule } from '@angular/router';
+import { AuthGuard } from '../shared/auth-guard';
 import { MonstersComponent } from './monsters.component';
 import { ShowMonsterComponent } from './show-monster.component';
 import { AddMonsterComponent } from './add-monster.component';
@@ -8,18 +9,22 @@ const monstersRoutes: Routes = [
   {
     path: 'monsters',
     component: MonstersComponent,
+    canActivate: [ AuthGuard ],
   },
   {
     path: 'monsters/show/:id',
     component: ShowMonsterComponent,
+    canActivate: [ AuthGuard ],
   },
   {
     path: 'monsters/add',
     component: AddMonsterComponent,
+    canActivate: [ AuthGuard ],
   },
   {
     path : 'monsters/find',
     component : FindMonstersComponent,
+    canActivate: [ AuthGuard ],
   },
 ];
 
