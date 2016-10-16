@@ -12,25 +12,27 @@ import { UserService } from '../shared/user/user.service';
         <div class="form-group">
           <label for="username">Username</label>
           <input type="text" class="form-control" id="username" required
-            [(ngModel)]="login" name="username">
+            [(ngModel)]="inputLogin" name="username">
         </div>
         <div class="form-group">
           <label for="password">Password</label>
           <input type="password" class="form-control" id="password" required
-            [(ngModel)]="password" name="password">
+            [(ngModel)]="inputPassword" name="password">
         </div>
         <button type="submit" class="btn btn-default">Submit</button>
       </form>
     </div>
   <div *ngIf="login" class="container">
     <h1>Welcome {{login}}</h1>
+    <button type="button" class="btn btn-default" (click)="onLogout()">Logout</button>
   </div>
   `
 })
 
 export class LoginComponent implements OnInit {
+  private inputLogin : string;
+  private inputPassword : string;
   private login : string;
-  private password : string;
 
   constructor(private userService : UserService, private titleService: Title) {}
 
@@ -40,9 +42,14 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit() {
-    this.userService.login(this.login, this.password)
+    this.userService.login(this.inputLogin, this.inputPassword)
     .subscribe(() => {
       this.login = this.userService.getLogin();
     });
+  }
+
+  onLogout() {
+    this.userService.logout();
+    this.login = null;
   }
 }

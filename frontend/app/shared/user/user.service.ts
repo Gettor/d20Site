@@ -20,10 +20,6 @@ export class UserService {
     this.headers.append('Accept', 'application/json');
   }
 
-  public isLogged() : boolean {
-    return localStorage.getItem('id_token') != null;
-  }
-
   public getLogin() : string {
     var token = localStorage.getItem('id_token');
     if (token) { return this.jwtHelper.decodeToken(token).login; }
@@ -38,5 +34,9 @@ export class UserService {
         }
       })
       .map((response : Response) => (null));
+  }
+
+  public logout() : void {
+    localStorage.removeItem('id_token');
   }
 }
