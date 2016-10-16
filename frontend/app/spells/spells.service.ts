@@ -1,5 +1,6 @@
 import { Injectable, Inject } from '@angular/core';
-import { Headers, Http, Response } from '@angular/http';
+import { Headers, Response } from '@angular/http';
+import { AuthHttp } from 'angular2-jwt';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import { Spell } from './spell'
@@ -12,7 +13,7 @@ export class SpellsService {
   private actionUrl : string;
   private headers : Headers;
 
-  constructor(private _http : Http, @Inject('API_ENDPOINT') private apiEndpoint : string) {
+  constructor(private authHttp : AuthHttp, @Inject('API_ENDPOINT') private apiEndpoint : string) {
     this.actionUrl = apiEndpoint + '/spells';
 
     this.headers = new Headers();
@@ -21,27 +22,27 @@ export class SpellsService {
   }
 
   public getSpell(id : number) : Observable<Spell> {
-    return this._http.get(this.actionUrl + '/get/' + id)
+    return this.authHttp.get(this.actionUrl + '/get/' + id)
       .map((response : Response) => (<Spell>response.json()));
   }
 
   public getMonster(id : number) : Observable<Monster> {
-    return this._http.get(this.actionUrl + '/getMonster/' + id)
+    return this.authHttp.get(this.actionUrl + '/getMonster/' + id)
       .map((response : Response) => (<Monster>response.json()));
   }
 
   public updateSpell(spell : Spell) : Observable<void> {
-    return this._http.post(this.actionUrl + '/update/', JSON.stringify(spell), { headers : this.headers })
+    return this.authHttp.post(this.actionUrl + '/update/', JSON.stringify(spell), { headers : this.headers })
       .map((response : Response) => (null));
   }
 
   public addSpell(spell : Spell) : Observable<number> {
-    return this._http.post(this.actionUrl + '/add/', JSON.stringify(spell), { headers : this.headers })
+    return this.authHttp.post(this.actionUrl + '/add/', JSON.stringify(spell), { headers : this.headers })
       .map((response : Response) => response.json().id);
   }
 
   public deleteSpell(id : number) : Observable<void> {
-    return this._http.post(this.actionUrl + '/del/', JSON.stringify({ "id" : id}), { headers : this.headers })
+    return this.authHttp.post(this.actionUrl + '/del/', JSON.stringify({ "id" : id}), { headers : this.headers })
       .map((response : Response) => (null));
   }
 }

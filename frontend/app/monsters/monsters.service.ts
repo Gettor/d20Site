@@ -1,5 +1,6 @@
 import { Injectable, Inject } from '@angular/core';
-import { Headers, Http, Response } from '@angular/http';
+import { Headers, Response } from '@angular/http';
+import { AuthHttp } from 'angular2-jwt';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import { Monster } from './monster'
@@ -14,7 +15,7 @@ export class MonstersService {
   private headers : Headers;
   private completerData : CompleterData;
 
-  constructor(private http : Http, @Inject('API_ENDPOINT') private apiEndpoint : string, private completerService : CompleterService) {
+  constructor(private authHttp : AuthHttp, @Inject('API_ENDPOINT') private apiEndpoint : string, private completerService : CompleterService) {
     this.actionUrl = apiEndpoint + '/monsters';
 
     this.headers = new Headers();
@@ -25,27 +26,27 @@ export class MonstersService {
   }
 
   public getMonster(id : number) : Observable<Monster> {
-    return this.http.get(this.actionUrl + '/get/' + id)
+    return this.authHttp.get(this.actionUrl + '/get/' + id)
       .map((response : Response) => (<Monster>response.json()));
   }
 
   public updateMonster(monster : Monster) : Observable<void> {
-    return this.http.post(this.actionUrl + '/update/', JSON.stringify(monster), { headers : this.headers })
+    return this.authHttp.post(this.actionUrl + '/update/', JSON.stringify(monster), { headers : this.headers })
       .map((response : Response) => (null));
   }
 
   public addMonster(monster : Monster) : Observable<number> {
-    return this.http.post(this.actionUrl + '/add/', JSON.stringify(monster), { headers : this.headers })
+    return this.authHttp.post(this.actionUrl + '/add/', JSON.stringify(monster), { headers : this.headers })
       .map((response : Response) => response.json().id);
   }
 
   public deleteMonster(id : number) : Observable<void> {
-    return this.http.post(this.actionUrl + '/del/', JSON.stringify({ "id" : id}), { headers : this.headers })
+    return this.authHttp.post(this.actionUrl + '/del/', JSON.stringify({ "id" : id}), { headers : this.headers })
       .map((response : Response) => (null));
   }
 
   public getSpells(id : number) : Observable<Miniature[]> {
-    return this.http.get(this.actionUrl + '/getSpells/' + id)
+    return this.authHttp.get(this.actionUrl + '/getSpells/' + id)
       .map((response : Response) => (<SpellInfo[]>response.json()))
       .map((spells : SpellInfo[]) => {
         let result : Miniature[] = [];

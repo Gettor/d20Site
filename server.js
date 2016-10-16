@@ -1,3 +1,5 @@
+#!/bin/node
+
 // add necessary modules
 var fs = require("fs");
 var qs = require('querystring');
@@ -12,20 +14,19 @@ var JwtStrategy = require('passport-jwt').Strategy;
 var ExtractJwt = require('passport-jwt').ExtractJwt;
 
 var opts = {}
-opts.jwtFromRequest = ExtractJwt.fromAuthHeader();
-opts.secretOrKey = 'secret';
+opts.jwtFromRequest = ExtractJwt.fromAuthHeaderWithScheme('Bearer');
+opts.secretOrKey = 'ApXCBR2b=V}gar-d';
 
 passport.use(new JwtStrategy(opts, function(jwtPayload, done) {
-    User.findOne({id: jwtPayload.sub}, function(err, user) {
-        if (err) {
-            return done(err, false);
-        }
-        if (user) {
-            done(null, user);
-        } else {
-            done(null, false);
-        }
-    });
+  models.User.findOne({
+    where : {
+      login : jwtPayload.login
+    }
+  })
+  .then(function(user) {
+    if (user) { done(null, true); }
+    else { done(null, false); }
+  });
 }));
 
 app.use(bodyParser.json());
@@ -68,7 +69,8 @@ app.post('/api/user/new', function (req, res) {
   res.end();
 });
 
-app.get('/api/monsters/get/:id', function (req, res) {
+app.get('/api/monsters/get/:id', passport.authenticate('jwt', { session: false}),
+  function (req, res) {
     models.Monster
       .findById(req.params.id)
       .then(function(monster) {
@@ -76,7 +78,8 @@ app.get('/api/monsters/get/:id', function (req, res) {
         });
 });
 
-app.get('/api/spells/get/:id', function (req, res) {
+app.get('/api/spells/get/:id', passport.authenticate('jwt', { session: false}),
+  function (req, res) {
     models.Spell
       .findById(req.params.id)
       .then(function(spell) {
@@ -84,7 +87,8 @@ app.get('/api/spells/get/:id', function (req, res) {
         });
 });
 
-app.get('/api/monsters/getSpells/:id', function (req, res) {
+app.get('/api/monsters/getSpells/:id', passport.authenticate('jwt', { session: false}),
+  function (req, res) {
     models.Monster
       .findById(req.params.id)
       .then(function(monster) {
@@ -95,7 +99,8 @@ app.get('/api/monsters/getSpells/:id', function (req, res) {
       });
 });
 
-app.get('/api/spells/getMonster/:id', function (req, res) {
+app.get('/api/spells/getMonster/:id', passport.authenticate('jwt', { session: false}),
+  function (req, res) {
     models.Spell
       .findById(req.params.id)
       .then(function(spell) {
@@ -106,7 +111,8 @@ app.get('/api/spells/getMonster/:id', function (req, res) {
        });
 });
 
-app.post('/api/monsters/update', function (req, res) {
+app.post('/api/monsters/update', passport.authenticate('jwt', { session: false}),
+  function (req, res) {
     var monster = req.body;
 
     models.Monster.findById(monster.id)
@@ -116,7 +122,8 @@ app.post('/api/monsters/update', function (req, res) {
         });
 });
 
-app.post('/api/spells/update', function (req, res) {
+app.post('/api/spells/update', passport.authenticate('jwt', { session: false}),
+  function (req, res) {
     var spell = req.body;
 
     models.Spell.findById(spell.id)
@@ -126,7 +133,8 @@ app.post('/api/spells/update', function (req, res) {
         });
 });
 
-app.post('/api/monsters/add', function (req, res) {
+app.post('/api/monsters/add', passport.authenticate('jwt', { session: false}),
+  function (req, res) {
     var monster = req.body;
 
     models.Monster.create(monster)
@@ -136,7 +144,8 @@ app.post('/api/monsters/add', function (req, res) {
         });
 });
 
-app.post('/api/monsters/del', function (req, res) {
+app.post('/api/monsters/del', passport.authenticate('jwt', { session: false}),
+  function (req, res) {
     var monster = req.body;
 
     models.Monster.findById(monster.id)
@@ -146,7 +155,8 @@ app.post('/api/monsters/del', function (req, res) {
         });
 });
 
-app.get('/api/monsters/find', function (req, res) {
+app.get('/api/monsters/find', passport.authenticate('jwt', { session: false}),
+  function (req, res) {
     var toFind = req.query.searchstr;
 
     models.Monster.findAll({
