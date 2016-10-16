@@ -2,6 +2,7 @@ import { NgModule, ModuleWithProviders } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { UserService } from './user/user.service';
+import { AuthGuard } from './auth-guard';
 import { MiniatureComponent } from './miniature/miniature.component';
 import { MiniatureContainerComponent } from './miniature/miniature-container.component';
 import { EditModalComponent } from './edit-modal.component';
@@ -22,7 +23,8 @@ import { AUTH_PROVIDERS } from 'angular2-jwt';
     MiniatureContainerComponent,
   ],
   providers: [
-    AUTH_PROVIDERS
+    AUTH_PROVIDERS,
+    AuthGuard,
   ],
   exports: [
     EditModalComponent,
