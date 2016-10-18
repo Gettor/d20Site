@@ -4,7 +4,7 @@ import { AuthHttp } from 'angular2-jwt';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import { Monster } from './monster'
-import { SpellInfo } from './spell-info'
+import { Spell } from '../spells/spell'
 import { Miniature } from './../shared/miniature/miniature';
 import { CompleterService, CompleterData, CompleterItem } from 'ng2-completer';
 
@@ -50,20 +50,9 @@ export class MonstersService {
       .map((response : Response) => (null));
   }
 
-  public getSpells(id : number) : Observable<Miniature[]> {
+  public getSpells(id : number) : Observable<Spell[]> {
     return this.authHttp.get(this.actionUrl + '/getSpells/' + id)
-      .map((response : Response) => (<SpellInfo[]>response.json()))
-      .map((spells : SpellInfo[]) => {
-        let result : Miniature[] = [];
-        for (let spell of spells) {
-          result.push(new Miniature(
-            spell.name,
-            '/spells/show/' + spell.id,
-            'bbb',
-            spell.description));
-        }
-        return result;
-      });
+      .map((response : Response) => (<Spell[]>response.json()));
   }
 
   public getFindService() : CompleterData {
