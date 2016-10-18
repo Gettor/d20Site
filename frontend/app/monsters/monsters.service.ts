@@ -22,7 +22,12 @@ export class MonstersService {
     this.headers.append('Content-Type', 'application/json');
     this.headers.append('Accept', 'application/json');
 
-    this.completerData = this.completerService.remote(this.actionUrl + '/find?searchstr=', 'name', 'name');
+    var completerHeaders = this.headers;
+    completerHeaders.append('authorization', 'Bearer ' + localStorage.getItem('id_token'));
+
+    var remoteData = this.completerService.remote(this.actionUrl + '/find?searchstr=', 'name', 'name');
+    remoteData.headers(completerHeaders);
+    this.completerData = remoteData;
   }
 
   public getMonster(id : number) : Observable<Monster> {
