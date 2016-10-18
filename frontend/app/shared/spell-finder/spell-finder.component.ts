@@ -5,16 +5,11 @@ import { Spell } from '../../spells/spell';
   selector : 'spell-finder',
   template : `
     <div class="list-group">
-      <button
-        type="button"
-        *ngFor="let spell of spells"
-        class="btn list-group-item"
-      >{{spell.name}}
-      </button>
+      <spell-finder-element *ngFor="let spell of spells" [spell]="spell"></spell-finder-element>
     </div>
   `,
   styles : [
-    ':host .list-group .list-group-item { text-align: center; }'
+    ':host /deep/ .list-group .list-group-item { text-align: center; }'
   ],
 })
 
