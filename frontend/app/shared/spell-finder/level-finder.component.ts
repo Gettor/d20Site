@@ -1,4 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnChanges } from '@angular/core';
+import { SpellFinderService } from './spell-finder.service';
 import { Spell } from '../../spells/spell';
 
 @Component({
@@ -62,25 +63,19 @@ import { Spell } from '../../spells/spell';
   ],
 })
 
-export class LevelFinderComponent implements OnInit {
+export class LevelFinderComponent implements OnChanges {
   @Input() spells : Spell[];
 
   private spellsByLevel : Spell[][] = [];
 
-  constructor() {
-    // TODO: split spells by level
-    this.spellsByLevel[0] = [];
-    this.spellsByLevel[1] = [];
-    this.spellsByLevel[2] = [];
-    this.spellsByLevel[3] = [];
-    this.spellsByLevel[4] = [];
-    this.spellsByLevel[5] = [];
-    this.spellsByLevel[6] = [];
-    this.spellsByLevel[7] = [];
-    this.spellsByLevel[8] = [];
-    this.spellsByLevel[9] = [];
+  constructor(private spellFinderService : SpellFinderService) {
   }
 
-  ngOnInit() {
+  ngOnChanges(changes : any) {
+    if (changes.spells) {
+        for (let i = 0; i < 10; i++) {
+          this.spellsByLevel[i] = this.spellFinderService.getSpellsWithLevel(i, changes.spells);
+        }
+    }
   }
 }

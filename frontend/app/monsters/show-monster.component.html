@@ -82,7 +82,7 @@
    <hr>
    <div class="row">
      <div class="col-xs-6 col-md-4"><b>Spells</b></div>
-     <div class="col-xs-6 col-md-4"><spell-finder [spells]="monsterSpells"></spell-finder></div>
+     <div class="col-xs-6 col-md-4"><spell-finder [spells]="monsterSpells | async"></spell-finder></div>
      <div class="col-xs-6 col-md-4"></div>
    </div>
    </div>

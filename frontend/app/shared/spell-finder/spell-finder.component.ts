@@ -22,22 +22,6 @@ import { Spell } from '../../spells/spell';
 export class SpellFinderComponent implements OnInit {
   @Input() spells : Spell[];
 
-  private spellsByLevel : Spell[][] = [];
-
-  constructor() {
-    // TODO: split spells by level
-    this.spellsByLevel[0] = [];
-    this.spellsByLevel[1] = [];
-    this.spellsByLevel[2] = [];
-    this.spellsByLevel[3] = [];
-    this.spellsByLevel[4] = [];
-    this.spellsByLevel[5] = [];
-    this.spellsByLevel[6] = [];
-    this.spellsByLevel[7] = [];
-    this.spellsByLevel[8] = [];
-    this.spellsByLevel[9] = [];
-  }
-
   ngOnInit() {
   }
 }
