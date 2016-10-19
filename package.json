@@ -36,6 +36,7 @@
     "ng2-bs3-modal": "^0.10.4",
     "ng2-completer": "^0.1.0",
     "ng2-pagination": "^0.4.1",
+    "ng2-tabs": "0.0.7",
     "passport": "^0.3.2",
     "passport-jwt": "^2.1.0",
     "reflect-metadata": "^0.1.3",

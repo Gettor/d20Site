@@ -19,6 +19,7 @@
     'angular2-jwt':               'npm:angular2-jwt/angular2-jwt.js',
     'js-base64':                  'npm:js-base64/base64.js',
     'buffer':                     '@empty',
+    'ng2-tabs':                   'npm:ng2-tabs',
   };
   // packages tells the System loader how to load when no filename and/or no extension
   var packages = {
@@ -27,6 +28,7 @@
     'angular2-in-memory-web-api': { main: 'index.js', defaultExtension: 'js' },
     'ng2-completer':              { main: 'ng2-completer.js', format: 'cjs' },
     'ng2-pagination':             { main: 'index.js', defaultExtension: 'js' },
+    'ng2-tabs':                   { main: 'index.js', defaultExtension: 'js' },
   };
   var ngPackageNames = [
     'common',

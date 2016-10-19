@@ -70,6 +70,7 @@ gulp.task("libs", () => {
             'ng2-pagination/**',
             'angular2-jwt/**',
             'js-base64/**',
+            'ng2-tabs/**',
         ], {cwd: "node_modules/**"}) /* Glob required here. */
         .pipe(gulp.dest("build/lib"));
 });
