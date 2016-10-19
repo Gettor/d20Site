@@ -5,60 +5,12 @@ import { Spell } from '../../spells/spell';
   selector : 'spell-finder',
   template : `
     <tabset [pills]="true">
-      <tab [disabled]="false"><span *tabHeading><b>*</b></span>
-        <div class="list-group">
-          <spell-finder-element *ngFor="let spell of spells" [spell]="spell"></spell-finder-element>
-        </div>
+      <tab [disabled]="false"><span *tabHeading><b>Name</b></span>
       </tab>
-      <tab [disabled]="false"><span *tabHeading><b>0</b></span>
-        <div class="list-group">
-          <spell-finder-element *ngFor="let spell of spellsByLevel[0]" [spell]="spell"></spell-finder-element>
-        </div>
+      <tab [disabled]="false"><span *tabHeading><b>Level</b></span>
+        <spell-level-finder [spells]="spells"></spell-level-finder>
       </tab>
-      <tab [disabled]="false"><span *tabHeading><b>1</b></span>
-        <div class="list-group">
-          <spell-finder-element *ngFor="let spell of spellsByLevel[1]" [spell]="spell"></spell-finder-element>
-        </div>
-      </tab>
-      <tab [disabled]="false"><span *tabHeading><b>2</b></span>
-        <div class="list-group">
-          <spell-finder-element *ngFor="let spell of spellsByLevel[2]" [spell]="spell"></spell-finder-element>
-        </div>
-      </tab>
-      <tab [disabled]="false"><span *tabHeading><b>3</b></span>
-        <div class="list-group">
-          <spell-finder-element *ngFor="let spell of spellsByLevel[3]" [spell]="spell"></spell-finder-element>
-        </div>
-      </tab>
-      <tab [disabled]="false"><span *tabHeading><b>4</b></span>
-        <div class="list-group">
-          <spell-finder-element *ngFor="let spell of spellsByLevel[4]" [spell]="spell"></spell-finder-element>
-        </div>
-      </tab>
-      <tab [disabled]="false"><span *tabHeading><b>5</b></span>
-        <div class="list-group">
-          <spell-finder-element *ngFor="let spell of spellsByLevel[5]" [spell]="spell"></spell-finder-element>
-        </div>
-      </tab>
-      <tab [disabled]="false"><span *tabHeading><b>6</b></span>
-        <div class="list-group">
-          <spell-finder-element *ngFor="let spell of spellsByLevel[6]" [spell]="spell"></spell-finder-element>
-        </div>
-      </tab>
-      <tab [disabled]="false"><span *tabHeading><b>7</b></span>
-        <div class="list-group">
-          <spell-finder-element *ngFor="let spell of spellsByLevel[7]" [spell]="spell"></spell-finder-element>
-        </div>
-      </tab>
-      <tab [disabled]="false"><span *tabHeading><b>8</b></span>
-        <div class="list-group">
-          <spell-finder-element *ngFor="let spell of spellsByLevel[8]" [spell]="spell"></spell-finder-element>
-        </div>
-      </tab>
-      <tab [disabled]="false"><span *tabHeading><b>9</b></span>
-        <div class="list-group">
-          <spell-finder-element *ngFor="let spell of spellsByLevel[9]" [spell]="spell"></spell-finder-element>
-        </div>
+      <tab [disabled]="false"><span *tabHeading><b>Type</b></span>
       </tab>
     </tabset>
   `,
