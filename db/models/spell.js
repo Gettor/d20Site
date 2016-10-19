@@ -10,6 +10,14 @@ module.exports = function(sequelize, DataTypes) {
       {
           type: DataTypes.TEXT
       },
+      level:
+      {
+          type: DataTypes.INTEGER
+      },
+      level_class:
+      {
+          type: DataTypes.TEXT
+      },
       save_type:
       {
           type: DataTypes.INTEGER,

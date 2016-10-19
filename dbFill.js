@@ -54,6 +54,8 @@ models.sequelize.sync({force: true}).then(function () {
             models.Spell.create({
                 name: 'Conjure Coffee ' + i,
                 description: 'Conjures low-coffeine coffee.',
+                level: i % 10,
+                level_class: 'Wizard',
                 save_type: 0,
                 permits_sr: false,
             })
