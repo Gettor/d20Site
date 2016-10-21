@@ -72,9 +72,10 @@ export class LevelFinderComponent implements OnChanges {
   }
 
   ngOnChanges(changes : any) {
-    if (changes.spells) {
+    let spells = changes['spells'].currentValue;
+    if (spells) {
         for (let i = 0; i < 10; i++) {
-          this.spellsByLevel[i] = this.spellFinderService.getSpellsWithLevel(i, changes.spells);
+          this.spellsByLevel[i] = this.spellFinderService.getSpellsWithLevel(i, spells);
         }
     }
   }
