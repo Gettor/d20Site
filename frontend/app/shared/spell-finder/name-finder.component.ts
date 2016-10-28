@@ -7,15 +7,23 @@ import { Spell } from '../../spells/spell';
   template : `
       <form>
         <div class="form-group">
-          <input type="text" class="form-control" placeholder="Spell name" [(ngModel)]="searchPattern" name="spellName">
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Spell name"
+            [ngModel]="searchPattern"
+            (ngModelChange)="applyPattern($event)"
+            name="spellName">
         </div>
       </form>
-      <spell-finder-element *ngFor="let spell of spells" [spell]="spell"></spell-finder-element>
+      <spell-finder-element *ngFor="let spell of filteredSpells" [spell]="spell"></spell-finder-element>
   `
 })
 
 export class NameFinderComponent implements OnChanges {
   @Input() spells : Spell[];
+
+  filteredSpells : Spell[];
 
   private searchPattern : string;
 
@@ -25,20 +33,22 @@ export class NameFinderComponent implements OnChanges {
   ngOnChanges(changes : any) {
     let spells = changes['spells'].currentValue;
     if (spells) {
-      this.applyPattern();
       spells.sort(function(a, b) {
         return a.name > b.name;
       });
+      this.filteredSpells = spells;
     }
   }
 
-  applyPattern() {
-    if (this.searchPattern && this.searchPattern != '') {
-      console.log(this.searchPattern);
-      console.log('aaa');
-      this.spells.filter(e => {
-        return e.name.indexOf(this.searchPattern) !== -1;
+  applyPattern(searchPattern : string) {
+    if (searchPattern && searchPattern != '') {
+      // TODO: case insensitive match
+      this.filteredSpells = this.spells.filter(e => {
+        return e.name.indexOf(searchPattern) !== -1;
       });
+    }
+    else {
+      this.filteredSpells = this.spells;
     }
   }
 }
