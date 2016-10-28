@@ -58,9 +58,6 @@ import { Spell } from '../../spells/spell';
       </tab>
     </tabset>
   `,
-  styles : [
-    ':host /deep/ .list-group .list-group-item { text-align: center; }'
-  ],
 })
 
 export class LevelFinderComponent implements OnChanges {

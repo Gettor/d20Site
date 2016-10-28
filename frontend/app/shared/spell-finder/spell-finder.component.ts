@@ -6,6 +6,7 @@ import { Spell } from '../../spells/spell';
   template : `
     <tabset [pills]="true">
       <tab [disabled]="false"><span *tabHeading><b>Name</b></span>
+        <spell-name-finder [spells]="spells"></spell-name-finder>
       </tab>
       <tab [disabled]="false"><span *tabHeading><b>Level</b></span>
         <spell-level-finder [spells]="spells"></spell-level-finder>
