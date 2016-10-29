@@ -33,9 +33,7 @@ export class NameFinderComponent implements OnChanges {
   ngOnChanges(changes : any) {
     let spells = changes['spells'].currentValue;
     if (spells) {
-      spells.sort(function(a, b) {
-        return a.name > b.name;
-      });
+      spells.sort(this.sortSpells);
       this.filteredSpells = spells;
     }
   }
@@ -44,11 +42,18 @@ export class NameFinderComponent implements OnChanges {
     if (searchPattern && searchPattern != '') {
       // TODO: case insensitive match
       this.filteredSpells = this.spells.filter(e => {
-        return e.name.indexOf(searchPattern) !== -1;
+        return e.name.toLowerCase().indexOf(searchPattern.toLowerCase()) !== -1;
       });
+      this.filteredSpells.sort(this.sortSpells);
     }
     else {
       this.filteredSpells = this.spells;
     }
+  }
+
+  private sortSpells(a : Spell, b : Spell) : number {
+    if(a.name < b.name) return -1;
+    if(a.name > b.name) return 1;
+    return 0;
   }
 }
