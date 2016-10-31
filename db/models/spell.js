@@ -14,10 +14,6 @@ module.exports = function(sequelize, DataTypes) {
       {
           type: DataTypes.INTEGER
       },
-      level_class:
-      {
-          type: DataTypes.TEXT
-      },
       save_type:
       {
           type: DataTypes.INTEGER,
@@ -32,6 +28,7 @@ module.exports = function(sequelize, DataTypes) {
       classMethods: {
          associate: function(models) {
             Spell.hasOne(models.SpellRange),
+            Spell.hasOne(models.Class),
             Spell.belongsTo(models.Monster, {through: 'MonsterSpellInstances'})
          }
       }

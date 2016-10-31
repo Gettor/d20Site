@@ -48,6 +48,9 @@ models.sequelize.sync({force: true}).then(function () {
             name: 'Self',
             description: 'Useable on caster only'
         }),
+        models.Class.create({
+            name: 'Wizard'
+        }),
     ])
     .then(function(records) {
         for (i = 0; i < 30; i++) {
@@ -55,12 +58,12 @@ models.sequelize.sync({force: true}).then(function () {
                 name: 'Conjure Coffee ' + i,
                 description: 'Conjures low-coffeine coffee.',
                 level: i % 10,
-                level_class: 'Wizard',
                 save_type: 0,
                 permits_sr: false,
             })
             .then(function(spell){
                 spell.setMonster(records[0]);
+                spell.setClass(records[2]);
                 records[1].addSpells([spell]);
             });
         }
