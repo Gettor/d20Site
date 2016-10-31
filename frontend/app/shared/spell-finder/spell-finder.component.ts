@@ -12,6 +12,7 @@ import { Spell } from '../../spells/spell';
         <spell-level-finder [spells]="spells"></spell-level-finder>
       </tab>
       <tab [disabled]="false"><span *tabHeading><b>Type</b></span>
+        <spell-type-finder [spells]="spells"></spell-type-finder>
       </tab>
     </tabset>
   `,

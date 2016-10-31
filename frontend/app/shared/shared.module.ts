@@ -7,6 +7,7 @@ import { MiniatureComponent } from './miniature/miniature.component';
 import { MiniatureContainerComponent } from './miniature/miniature-container.component';
 import { LevelFinderComponent } from './spell-finder/level-finder.component';
 import { NameFinderComponent } from './spell-finder/name-finder.component';
+import { TypeFinderComponent } from './spell-finder/type-finder.component';
 import { SpellFinderComponent } from './spell-finder/spell-finder.component';
 import { SpellFinderElementComponent } from './spell-finder/spell-finder-element.component';
 import { SpellFinderService } from './spell-finder/spell-finder.service';
@@ -28,6 +29,7 @@ import { AUTH_PROVIDERS } from 'angular2-jwt';
     EditModalComponent,
     MiniatureComponent,
     MiniatureContainerComponent,
+    TypeFinderComponent,
     LevelFinderComponent,
     NameFinderComponent,
     SpellFinderComponent,
