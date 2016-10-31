@@ -39,6 +39,15 @@ models.sequelize.sync({force: true}).then(function () {
         description: 'Useable in meele range (touch target, hit with meele weapon, etc.)'
     });
 
+    models.SpellType.create({
+        name: 'Divination',
+        description: 'Divination spells enable you to learn secrets long forgotten, to predict the future, to find hidden things, and to foil deceptive spells'
+    });
+    models.SpellType.create({
+        name: 'Enchantment',
+        description: 'Enchantment spells affect the minds of others, influencing or controlling their behavior'
+    });
+
     Promise.all([
         models.Monster.create({
             name: 'Harry Potter',
@@ -51,6 +60,10 @@ models.sequelize.sync({force: true}).then(function () {
         models.Class.create({
             name: 'Wizard'
         }),
+        models.SpellType.create({
+            name: 'Conjuration',
+            description: 'Conjurations bring manifestations of objects, creatures, or some form of energy'
+        }),
     ])
     .then(function(records) {
         for (i = 0; i < 30; i++) {
@@ -59,12 +72,12 @@ models.sequelize.sync({force: true}).then(function () {
                 description: 'Conjures low-coffeine coffee.',
                 level: i % 10,
                 save_type: 0,
-                permits_sr: false,
-            })
-            .then(function(spell){
-                spell.setMonster(records[0]);
+                permits_sr: false
+            }).then(function(spell) {
+                spell.addMonster(records[0]);
+                spell.setSpellRange(records[1]);
                 spell.setClass(records[2]);
-                records[1].addSpells([spell]);
+                spell.setSpellType(records[3]);
             });
         }
     });

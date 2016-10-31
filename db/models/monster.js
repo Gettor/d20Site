@@ -29,8 +29,8 @@ module.exports = function(sequelize, DataTypes) {
       classMethods: {
          associate: function(models) {
             Monster.hasOne(models.Notepad);
-            Monster.hasMany(models.Spell);
-            Monster.hasMany(models.Skill);
+            Monster.belongsToMany(models.Spell, { through: 'MonsterSpellInstances' });
+            Monster.belongsToMany(models.Skill, { through: 'MonsterSkillInstances' });
          }
       }
   });

@@ -19,6 +19,12 @@ module.exports = function(sequelize, DataTypes) {
           type: DataTypes.BOOLEAN,
           defaultValue: true
       }
+  }, {
+      classMethods: {
+         associate: function(models) {
+            Skill.belongsToMany(models.Monster, { through: 'MonsterSkillInstances' });
+         }
+      }
   });
 
   return Skill;

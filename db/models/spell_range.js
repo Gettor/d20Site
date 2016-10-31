@@ -10,12 +10,6 @@ module.exports = function(sequelize, DataTypes) {
       {
           type: DataTypes.TEXT
       }
-  }, {
-      classMethods: {
-         associate: function(models) {
-            SpellRange.belongsToMany(models.Spell, {through: 'SpellRangeInstances'})
-         }
-      }
   });
 
   return SpellRange;

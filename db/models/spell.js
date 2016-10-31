@@ -27,9 +27,10 @@ module.exports = function(sequelize, DataTypes) {
   }, {
       classMethods: {
          associate: function(models) {
-            Spell.hasOne(models.SpellRange),
-            Spell.hasOne(models.Class),
-            Spell.belongsTo(models.Monster, {through: 'MonsterSpellInstances'})
+            Spell.belongsTo(models.SpellRange),
+            Spell.belongsTo(models.SpellType),
+            Spell.belongsTo(models.Class),
+            Spell.belongsToMany(models.Monster, {through: 'MonsterSpellInstances'})
          }
       }
   });

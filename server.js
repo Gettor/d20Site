@@ -104,7 +104,7 @@ app.get('/api/spells/getMonster/:id', passport.authenticate('jwt', { session: fa
     models.Spell
       .findById(req.params.id)
       .then(function(spell) {
-          spell.getMonster()
+          spell.getMonsters()
             .then(function(monster) {
                 res.send(JSON.stringify(monster));
           });
