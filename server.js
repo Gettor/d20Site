@@ -92,7 +92,10 @@ app.get('/api/monsters/getSpells/:id', passport.authenticate('jwt', { session: f
     models.Monster
       .findById(req.params.id)
       .then(function(monster) {
-          monster.getSpells()
+          monster.getSpells(
+            { include : [
+              { model : models.SpellType }
+          ]})
           .then(function(spells) {
               res.send(JSON.stringify(spells));
           });
