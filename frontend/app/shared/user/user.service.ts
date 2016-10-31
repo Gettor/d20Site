@@ -3,7 +3,7 @@ import { Headers, Http, Response } from '@angular/http';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/do';
 import { Observable } from 'rxjs/Observable';
-import { JwtHelper } from 'angular2-jwt';
+import { JwtHelper, tokenNotExpired } from 'angular2-jwt';
 
 @Injectable()
 export class UserService {
@@ -22,8 +22,8 @@ export class UserService {
 
   public getLogin() : string {
     var token = localStorage.getItem('id_token');
-    if (token) { return this.jwtHelper.decodeToken(token).login; }
-    else { return null; }
+    if (!token || !tokenNotExpired()) { return null; }
+    return this.jwtHelper.decodeToken(token).login;
   }
 
   public login(user : string, password : string) : Observable<void> {
