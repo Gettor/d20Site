@@ -8,10 +8,17 @@ const tsProject = tsc.createProject("tsconfig.json");
 const tslint = require('gulp-tslint');
 
 /**
- * Remove build directory.
+ * Remove database file.
  */
-gulp.task('clean', (cb) => {
-    return del(["build", "d20Seq.db*"], cb);
+gulp.task('clean_database', (cb => {
+    return del(["d20Seq.db*"], cb);
+}));
+
+/**
+ * Remove build directory and database file.
+ */
+gulp.task('clean', ["clean_database"], (cb) => {
+    return del(["build"], cb);
 });
 
 /**
@@ -48,7 +55,7 @@ gulp.task("resources", () => {
 /**
  * Recreate d20Seq.db file via dbFill.js script
  */
-gulp.task("fill_database", () => {
+gulp.task("fill_database", ["clean_database"], () => {
     return require('./dbFill.js');
 });
 
