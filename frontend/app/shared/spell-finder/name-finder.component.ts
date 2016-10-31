@@ -40,7 +40,6 @@ export class NameFinderComponent implements OnChanges {
 
   applyPattern(searchPattern : string) {
     if (searchPattern && searchPattern != '') {
-      // TODO: case insensitive match
       this.filteredSpells = this.spells.filter(e => {
         return e.name.toLowerCase().indexOf(searchPattern.toLowerCase()) !== -1;
       });
