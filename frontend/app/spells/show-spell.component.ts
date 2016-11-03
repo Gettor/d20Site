@@ -46,8 +46,11 @@ export class ShowSpellComponent implements OnInit {
       .map((params : any) => (this.getMonster(+params['id'])))
       .concatAll()
       .subscribe(monster => {
-        this.monster = monster;
-        this.monsterUrl = this.monsterUrl + String(monster.id);
+        if (monster.length != 0)
+        {
+          this.monster = monster[0];
+          this.monsterUrl = this.monsterUrl + String(monster[0].id);
+        }
     });
     this.updateState = this.route.snapshot.params['updated'];
   }
