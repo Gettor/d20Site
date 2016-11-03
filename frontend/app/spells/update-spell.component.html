@@ -25,6 +25,31 @@
          </td>
        </tr>
        <tr>
+         <td style="text-align:right"><b>Spell level:</b></td>
+         <td style="text-align:left">
+          <button *ngIf="spell.level == 0" type="button" class="btn btn-success" (click)="spell.level=0">0</button>
+          <button *ngIf="spell.level != 0" type="button" class="btn btn-warning" (click)="spell.level=0">0</button>
+          <button *ngIf="spell.level == 1" type="button" class="btn btn-success" (click)="spell.level=1">1</button>
+          <button *ngIf="spell.level != 1" type="button" class="btn btn-warning" (click)="spell.level=1">1</button>
+          <button *ngIf="spell.level == 2" type="button" class="btn btn-success" (click)="spell.level=2">2</button>
+          <button *ngIf="spell.level != 2" type="button" class="btn btn-warning" (click)="spell.level=2">2</button>
+          <button *ngIf="spell.level == 3" type="button" class="btn btn-success" (click)="spell.level=3">3</button>
+          <button *ngIf="spell.level != 3" type="button" class="btn btn-warning" (click)="spell.level=3">3</button>
+          <button *ngIf="spell.level == 4" type="button" class="btn btn-success" (click)="spell.level=4">4</button>
+          <button *ngIf="spell.level != 4" type="button" class="btn btn-warning" (click)="spell.level=4">4</button>
+          <button *ngIf="spell.level == 5" type="button" class="btn btn-success" (click)="spell.level=5">5</button>
+          <button *ngIf="spell.level != 5" type="button" class="btn btn-warning" (click)="spell.level=5">5</button>
+          <button *ngIf="spell.level == 6" type="button" class="btn btn-success" (click)="spell.level=6">6</button>
+          <button *ngIf="spell.level != 6" type="button" class="btn btn-warning" (click)="spell.level=6">6</button>
+          <button *ngIf="spell.level == 7" type="button" class="btn btn-success" (click)="spell.level=7">7</button>
+          <button *ngIf="spell.level != 7" type="button" class="btn btn-warning" (click)="spell.level=7">7</button>
+          <button *ngIf="spell.level == 8" type="button" class="btn btn-success" (click)="spell.level=8">8</button>
+          <button *ngIf="spell.level != 8" type="button" class="btn btn-warning" (click)="spell.level=8">8</button>
+          <button *ngIf="spell.level == 9" type="button" class="btn btn-success" (click)="spell.level=9">9</button>
+          <button *ngIf="spell.level != 9" type="button" class="btn btn-warning" (click)="spell.level=9">9</button>
+        </td>
+       </tr>
+       <tr>
          <td style="text-align:right"><b>Save type:</b></td>
          <td style="text-align:left">
           <button *ngIf="spell.save_type == 0" type="button" class="btn btn-success" (click)="spell.save_type=0">No save</button>
