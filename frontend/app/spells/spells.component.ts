@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { Spell } from './spell';
 
 @Component({
    selector : 'my-spells',

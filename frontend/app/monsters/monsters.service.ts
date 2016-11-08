@@ -3,8 +3,8 @@ import { Headers, Response } from '@angular/http';
 import { AuthHttp } from 'angular2-jwt';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
-import { Monster } from './monster'
-import { Spell } from '../spells/spell'
+import { Monster } from '../shared/model/monster'
+import { Spell } from '../shared/model/spell'
 import { Miniature } from './../shared/miniature/miniature';
 import { CompleterService, CompleterData, CompleterItem } from 'ng2-completer';
 

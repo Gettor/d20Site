@@ -3,8 +3,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Title } from '@angular/platform-browser';
 import { Subscription } from 'rxjs/Subscription';
 import { Observable } from 'rxjs/Observable';
-import { Spell } from './spell';
-import { Monster } from '../monsters/monster';
+import { Spell } from '../shared/model/spell';
+import { Monster } from '../shared/model/monster';
 import { SpellsService } from './spells.service';
 import { MonstersService } from '../monsters/monsters.service';
 import 'rxjs/add/operator/map';
@@ -63,7 +63,7 @@ export class ShowSpellComponent implements OnInit {
     return this.spellsService.getSpell(id);
   }
 
-  getMonster(id : number) : Observable<Monster> {
+  getMonster(id : number) : Observable<Monster[]> {
     return this.spellsService.getMonster(id);
   }
 

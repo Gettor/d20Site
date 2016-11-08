@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Spell } from './../../spells/spell'
+import { Spell } from './../model/spell'
 
 
 @Injectable()

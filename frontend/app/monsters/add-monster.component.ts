@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
-import { Monster } from './monster';
+import { Monster } from '../shared/model/monster';
 import { MonstersService } from './monsters.service';
 
 @Component({

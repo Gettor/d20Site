@@ -1,6 +1,6 @@
 import { Component, Input, OnChanges } from '@angular/core';
 import { SpellFinderService } from './spell-finder.service';
-import { Spell } from '../../spells/spell';
+import { Spell } from '../model/spell';
 
 @Component({
   selector : 'spell-name-finder',

@@ -3,8 +3,8 @@ import { Headers, Response } from '@angular/http';
 import { AuthHttp } from 'angular2-jwt';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
-import { Spell } from './spell'
-import { Monster } from '../monsters/monster';
+import { Spell } from '../shared/model/spell'
+import { Monster } from '../shared/model/monster';
 
 
 @Injectable()
@@ -26,9 +26,9 @@ export class SpellsService {
       .map((response : Response) => (<Spell>response.json()));
   }
 
-  public getMonster(id : number) : Observable<Monster> {
+  public getMonster(id : number) : Observable<Monster[]> {
     return this.authHttp.get(this.actionUrl + '/getMonster/' + id)
-      .map((response : Response) => (<Monster>response.json()));
+      .map((response : Response) => (<Monster[]>response.json()));
   }
 
   public updateSpell(spell : Spell) : Observable<void> {
