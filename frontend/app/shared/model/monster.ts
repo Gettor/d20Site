@@ -1,3 +1,4 @@
+import { Spell } from './spell';
 
 export class Monster {
   public id : number;
@@ -8,4 +9,5 @@ export class Monster {
   public hp : number;
   public initiative : number;
   public speed : number;
+  public Spells : Spell[];
 }

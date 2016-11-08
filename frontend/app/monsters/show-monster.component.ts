@@ -21,7 +21,6 @@ export class ShowMonsterComponent implements OnInit {
   @Input() monster : Monster = new Monster();
 
   sub : Subscription;
-  monsterSpells : Observable<Spell[]>;
 
   constructor(private route : ActivatedRoute, private router : Router, private titleService: Title, private monstersService : MonstersService) {
   }
@@ -33,7 +32,6 @@ export class ShowMonsterComponent implements OnInit {
       .subscribe(monster => {
         this.monster = monster;
         this.titleService.setTitle( "d20Site - View Monsters - " + this.monster.name );
-        this.monsterSpells = this.monstersService.getSpells(monster.id);
     });
   }
 

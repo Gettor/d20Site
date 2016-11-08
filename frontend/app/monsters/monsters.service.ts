@@ -50,11 +50,6 @@ export class MonstersService {
       .map((response : Response) => (null));
   }
 
-  public getSpells(id : number) : Observable<Spell[]> {
-    return this.authHttp.get(this.actionUrl + '/getSpells/' + id)
-      .map((response : Response) => (<Spell[]>response.json()));
-  }
-
   public getFindService() : CompleterData {
     return this.completerData;
   }

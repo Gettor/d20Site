@@ -74,7 +74,11 @@ app.get('/api/monsters/get/:id', passport.authenticate('jwt', { session: false})
     models.Monster
       .findById(req.params.id, {
         include: [
-          { model: models.Skill }
+          { model: models.Skill },
+          { model: models.Spell,
+            include: [
+              { model: models.SpellType },
+          ]},
         ]
       }).then(function(monster) {
           res.send(JSON.stringify(monster));
@@ -88,22 +92,6 @@ app.get('/api/spells/get/:id', passport.authenticate('jwt', { session: false}),
       .then(function(spell) {
           res.send(JSON.stringify(spell));
         });
-});
-
-// FIXME: remove this request and place needed spell data in api/monsters/get/:id using 'include'
-app.get('/api/monsters/getSpells/:id', passport.authenticate('jwt', { session: false}),
-  function (req, res) {
-    models.Monster
-      .findById(req.params.id)
-      .then(function(monster) {
-          monster.getSpells(
-            { include : [
-              { model : models.SpellType }
-          ]})
-          .then(function(spells) {
-              res.send(JSON.stringify(spells));
-          });
-      });
 });
 
 app.get('/api/spells/getMonster/:id', passport.authenticate('jwt', { session: false}),
