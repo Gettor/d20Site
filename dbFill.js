@@ -44,7 +44,7 @@ models.sequelize.sync({force: true}).then(function () {
     });
 
     //  CREATING ALL SPELL TYPES
- 
+
     models.SpellType.create({
         name: 'Abjuration',
         description: 'Abjuration spells create physical or magical barriers, negate magical or physical abilities, harm trespassers, or even banish the subject of the spell to another plane of existence.'
@@ -78,6 +78,13 @@ models.sequelize.sync({force: true}).then(function () {
         description: 'Transmutation spells change the properties of some creature, thing, or condition'
     });
 
+    // CREATING ALL SKILLS
+
+    models.Skill.create({
+        name: 'Bluf',
+        description: 'Just blufing',
+        key_attribute: 'Str',
+    });
 
     //  CREATING TEST MONSTERS WITH ALOT OF DATA
 
@@ -131,6 +138,14 @@ models.sequelize.sync({force: true}).then(function () {
                         spell.setSpellType(spellType);
                     });
                 }
+                models.SkillValue.create({
+                    value: 10
+                }).then(function(skillValue) {
+                    models.Skill.findOne({ where: { name: "Bluf" }})
+                    .then(function(skill) {
+                    skillValue.setSkill(skill);
+                    records[0].setSkillValues([skillValue]);
+                })});
         })
         })
     });

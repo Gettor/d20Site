@@ -74,7 +74,10 @@ app.get('/api/monsters/get/:id', passport.authenticate('jwt', { session: false})
     models.Monster
       .findById(req.params.id, {
         include: [
-          { model: models.Skill },
+          { model: models.SkillValue,
+            include: [
+              { model: models.Skill }
+          ]},
           { model: models.Spell,
             include: [
               { model: models.SpellType },

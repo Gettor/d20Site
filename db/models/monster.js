@@ -30,7 +30,7 @@ module.exports = function(sequelize, DataTypes) {
          associate: function(models) {
             Monster.hasOne(models.Notepad);
             Monster.belongsToMany(models.Spell, { through: 'MonsterSpellInstances' });
-            Monster.belongsToMany(models.Skill, { through: 'MonsterSkillInstances' });
+            Monster.belongsToMany(models.SkillValue, { through: 'MonsterSkillValueInstances' });
          }
       }
   });
