@@ -6,6 +6,7 @@ import { ShowMonsterComponent } from './show-monster.component';
 import { SpellMiniaturesComponent } from './spell-miniatures.component';
 import { AddMonsterComponent } from './add-monster.component';
 import { FindMonstersComponent } from './find-monsters.component';
+import { ShowSkillsComponent } from './show-skills.component';
 import { MonstersService } from './monsters.service';
 import { SharedModule } from '../shared/shared.module';
 import { Ng2CompleterModule } from "ng2-completer";
@@ -23,6 +24,7 @@ import { Ng2CompleterModule } from "ng2-completer";
     AddMonsterComponent,
     FindMonstersComponent,
     SpellMiniaturesComponent,
+    ShowSkillsComponent,
   ],
   providers : [
     Title,
