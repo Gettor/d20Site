@@ -11,6 +11,7 @@ import { MonstersService } from './monsters.service';
 
 export class AddMonsterComponent {
   monster : Monster = new Monster();
+  private operationType : string = "Add";
 
   constructor(private monstersService : MonstersService, private titleService : Title, private router : Router) {
   }

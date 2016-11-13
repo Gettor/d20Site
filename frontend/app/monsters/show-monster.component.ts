@@ -4,7 +4,6 @@ import { Title } from '@angular/platform-browser';
 import { Subscription } from 'rxjs/Subscription';
 import { Observable } from 'rxjs/Observable';
 import { Monster } from '../shared/model/monster';
-import { Spell } from '../shared/model/spell';
 import { MonstersService } from './monsters.service';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/concatAll';
@@ -18,7 +17,7 @@ import 'rxjs/add/operator/concatAll';
 })
 
 export class ShowMonsterComponent implements OnInit {
-  @Input() monster : Monster = new Monster();
+  monster : Monster = new Monster();
 
   sub : Subscription;
 
