@@ -2,6 +2,7 @@ import { Injectable, Inject } from '@angular/core';
 import { Headers, Response } from '@angular/http';
 import { AuthHttp } from 'angular2-jwt';
 import { Observable } from 'rxjs/Observable';
+import { Observer } from 'rxjs/Observer';
 import 'rxjs/add/operator/map';
 import { Monster } from '../shared/model/monster'
 import { Spell } from '../shared/model/spell'
@@ -14,6 +15,7 @@ export class MonstersService {
   private actionUrl : string;
   private headers : Headers;
   private completerData : CompleterData;
+  private cachedMonster : Monster;
 
   constructor(private authHttp : AuthHttp, @Inject('API_ENDPOINT') private apiEndpoint : string, private completerService : CompleterService) {
     this.actionUrl = apiEndpoint + '/monsters';
@@ -31,8 +33,13 @@ export class MonstersService {
   }
 
   public getMonster(id : number) : Observable<Monster> {
-    return this.authHttp.get(this.actionUrl + '/get/' + id)
-      .map((response : Response) => (<Monster>response.json()));
+    if (!this.cachedMonster || this.cachedMonster.id != id) {
+      return this.authHttp.get(this.actionUrl + '/get/' + id)
+        .map((response : Response) => (<Monster>response.json()))
+        .do((monster : Monster) => (this.cachedMonster = monster));
+    } else {
+      return Observable.create((observer : Observer<Monster>) => (observer.next(this.cachedMonster)));
+    }
   }
 
   public updateMonster(monster : Monster) : Observable<void> {
