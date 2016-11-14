@@ -44,13 +44,11 @@ export class ShowMonsterComponent implements OnInit {
 
   onUpdateMonster() {
     this.monstersService.updateMonster(this.monster)
-      .subscribe();
+      .subscribe(() => (this.router.navigateByUrl('monsters/update/' + this.monster.id)));
   }
 
   onDeleteMonster() {
     this.monstersService.deleteMonster(this.monster.id)
-      .subscribe(() => {
-        this.router.navigateByUrl('monsters/find');
-      });
+      .subscribe(() => ( this.router.navigateByUrl('monsters/find')));
   }
 }
