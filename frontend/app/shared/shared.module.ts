@@ -2,6 +2,7 @@ import { NgModule, ModuleWithProviders } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { UserService } from './user/user.service';
+import { SkillsService } from './skills/skills.service';
 import { AuthGuard } from './auth-guard';
 import { MiniatureComponent } from './miniature/miniature.component';
 import { MiniatureContainerComponent } from './miniature/miniature-container.component';
@@ -53,7 +54,10 @@ export class SharedModule {
   static forRoot(): ModuleWithProviders {
     return {
       ngModule: SharedModule,
-      providers: [ UserService ]
+      providers: [
+        UserService,
+        SkillsService,
+      ]
     };
   }
 }
