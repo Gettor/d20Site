@@ -4,6 +4,7 @@ import { AuthHttp } from 'angular2-jwt';
 import { Observable } from 'rxjs/Observable';
 import { Observer } from 'rxjs/Observer';
 import 'rxjs/add/operator/map';
+import 'rxjs/add/observable/from';
 import { Monster } from '../shared/model/monster'
 import { Spell } from '../shared/model/spell'
 import { Miniature } from './../shared/miniature/miniature';
@@ -38,7 +39,7 @@ export class MonstersService {
         .map((response : Response) => (<Monster>response.json()))
         .do((monster : Monster) => (this.cachedMonster = monster));
     } else {
-      return Observable.create((observer : Observer<Monster>) => (observer.next(this.cachedMonster)));
+      return Observable.from([this.cachedMonster]);
     }
   }
 
