@@ -2,9 +2,7 @@ import { Injectable, Inject } from '@angular/core';
 import { Headers, Response } from '@angular/http';
 import { AuthHttp } from 'angular2-jwt';
 import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/publishReplay';
-import 'rxjs/add/operator/refCount';
 import { Skill } from '../model/skill'
 
 @Injectable()
@@ -23,8 +21,7 @@ export class SkillsService {
 
     this.skills = this.authHttp.get(this.actionUrl + '/get')
       .map((response : Response) => (<Skill[]>response.json()))
-      .publishReplay(1)
-      .refCount();
+      .publishReplay(1);
   }
 
   public getSkills() : Observable<Skill[]> {
